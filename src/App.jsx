@@ -1,10 +1,8 @@
-import './App.css'
-
 function App() {
 	return (
 		<div className="App">
-			<header className="App-header">
-				<h1>my app</h1>
+			<header className="app-header">
+				<nav className="main-nav">toys</nav>
 			</header>
 		</div>
 	)

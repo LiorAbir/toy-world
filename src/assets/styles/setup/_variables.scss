@@ -1,0 +1,32 @@
+//COLORS
+$clr1: black;
+$clr2: white;
+$clr3: #757575;
+$clr4: rgb(241 243 244);
+$clr5: rgb(251 188 4);
+
+$svg-clr1: invert(44%) sepia(36%) saturate(9%) hue-rotate(317deg) brightness(95%)
+	contrast(86%);
+$svg-clr2: invert(100%) sepia(1%) saturate(3294%) hue-rotate(285deg) brightness(116%)
+	contrast(100%);
+$svg-clr3: invert(46%) sepia(1%) saturate(0%) hue-rotate(341deg) brightness(100%)
+	contrast(88%);
+$svg-clr4: invert(5%) sepia(0%) saturate(4881%) hue-rotate(8deg) brightness(99%)
+	contrast(85%);
+
+$radius: 8px;
+
+// - Dark Blue (intro and email sign up background): h
+// - Dark Blue (main background):
+// - Dark Blue (footer background):
+// - Dark Blue (testimonials background):
+
+//LAYOUT
+$mini-breakpoint: 520px;
+$mobile-breakpoint: 760px;
+$narrow-breakpoint: 1100px;
+$normal-breakpoint: 1250px;
+$wide-breakpoint: 1460px;
+
+// - Mobile: 375px
+// - Desktop: 1440px

@@ -1,0 +1,73 @@
+.note-add {
+	width: 60%;
+	margin: 0 auto 16px auto;
+	box-shadow: 0 0 5px 0px rgb(0 0 0 / 37%);
+	border-radius: 8px;
+	transition: 0.5s;
+	background-color: $clr2;
+
+	.add-container {
+		justify-content: space-between;
+		align-items: center;
+		padding: 10px 15px;
+
+		.type-btn {
+			margin-left: 10px;
+		}
+
+		img {
+			filter: $svg-clr1;
+			height: 20px;
+
+			&:hover {
+				cursor: pointer;
+				filter: $svg-clr4;
+			}
+		}
+	}
+
+	.add-note-input {
+		width: 100%;
+		.content-input {
+			flex-direction: column;
+			justify-content: center;
+		}
+
+		.note-imgs {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 5px;
+			img:not(.delete-img-btn) {
+				border-radius: 8px;
+			}
+		}
+
+		.note-content {
+			padding: 10px 15px;
+			&[placeholder]:empty::before {
+				content: attr(placeholder);
+				color: $clr3;
+			}
+		}
+
+		.actions {
+			justify-content: space-between;
+			align-items: center;
+			img {
+				filter: $svg-clr1;
+				height: 20px;
+				margin-right: 10px;
+
+				&:hover {
+					cursor: pointer;
+					filter: $svg-clr4;
+				}
+			}
+		}
+	}
+
+	.background-pallete {
+		right: 454px;
+		top: 198px;
+	}
+}

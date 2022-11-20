@@ -1,0 +1,26 @@
+.main-layout {
+	padding-inline-start: rem(75px);
+	padding-inline-end: rem(75px);
+}
+
+// .main-app {
+// 	max-height: 100vh;
+// 	min-height: 100vh;
+// 	display: flex;
+// 	flex-direction: column;
+// }
+
+// .container {
+//     padding-inline-start: 0.5rem;
+//     padding-inline-end: 0.5rem;
+
+//     @include from-mini-layout {
+//         padding-inline-start: 1rem;
+//         padding-inline-end: 1rem;
+//     }
+
+//     @include from-mobile-layout {
+//         padding-inline-start: 40px;
+//         padding-inline-end: 40px;
+//    }
+// }
