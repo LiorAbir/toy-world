@@ -67,12 +67,8 @@ async function query(filterBy) {
 
 		toys = filteredToys
 	}
-	// const { name, price, inStock, labels, sort } = filterBy
 
-	// console.log(filteredToys)
 	return Promise.resolve([...toys])
-	// return filteredToys
-
 	// return storageService.query(TOY_KEY)
 
 	// return await httpService.get(prmStr)

@@ -1,3 +1,11 @@
 .toy-details {
-	background-color: lightblue;
+	width: 60%;
+	margin: auto;
+	background-color: $clr5;
+	padding: 1rem;
+	border-radius: $radius;
+
+	img {
+		width: 500px;
+	}
 }

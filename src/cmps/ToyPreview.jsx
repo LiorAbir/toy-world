@@ -1,12 +1,14 @@
+import { Link } from 'react-router-dom'
+
 export function ToyPreview({ toy, onRemoveToy }) {
 	const toyStyle = { backgroundImage: `url(https://robohash.org/${toy._id})` }
 	return (
 		<div className="toy-preview flex" style={toyStyle}>
-			<section className="info">
+			<Link className="info" to={`/toy/${toy._id}`}>
 				<h2>{toy.name}</h2>
 				<h4>{toy.price}</h4>
 				<p>{toy.desc}</p>
-			</section>
+			</Link>
 			<section className="actions flex">
 				<button className="btn edit-btn">edit</button>
 				<button

@@ -1,8 +1,15 @@
+import { NavLink } from 'react-router-dom'
+
 function _AppHeader() {
 	return (
 		<header className="app-header flex">
-			<div className="content main-layout">
-				<h1>Toy World</h1>
+			<div className="content main-layout flex">
+				<NavLink exact to="/">
+					<h1 className="logo">Toy World</h1>
+				</NavLink>
+				<nav className="main-nav">
+					<NavLink to="/toy">Toys</NavLink>
+				</nav>
 			</div>
 		</header>
 	)

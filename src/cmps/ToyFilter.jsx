@@ -12,7 +12,18 @@ export class ToyFilter extends Component {
 
 	handleChange = ({ target }) => {
 		const field = target.name
-		const value = target.type === 'number' ? +target.value || '' : target.value
+		let value = target.value
+
+		switch (target.type) {
+			case 'number':
+				value = +target.value || ''
+				break
+			case 'checkbox':
+				value = target.checked
+				break
+			default:
+				value = target.value
+		}
 
 		this.setState({ [field]: value }, () => {
 			this.props.onChangeFilter({ ...this.state })
