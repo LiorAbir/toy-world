@@ -3,6 +3,13 @@
 	padding-inline-end: rem(75px);
 }
 
+.card-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+	grid-auto-rows: 200px;
+	gap: 20px;
+}
+
 // .main-app {
 // 	max-height: 100vh;
 // 	min-height: 100vh;

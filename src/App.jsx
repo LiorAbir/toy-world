@@ -1,9 +1,13 @@
+import { AppHeader } from './cmps/AppHeader'
+import { ToyApp } from './views/ToyApp'
+
 function App() {
 	return (
-		<div className="App">
-			<header className="app-header">
-				<nav className="main-nav">toys</nav>
-			</header>
+		<div className="main-app">
+			<AppHeader />
+			<main>
+				<ToyApp />
+			</main>
 		</div>
 	)
 }

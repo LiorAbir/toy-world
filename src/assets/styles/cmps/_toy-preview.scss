@@ -1,0 +1,14 @@
+.toy-preview {
+	background-color: $clr2;
+	border-radius: $radius;
+	box-shadow: 0 0 3px 0px #79737380;
+
+	//background-img
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position: bottom;
+
+	.info {
+		padding: rem(10px);
+	}
+}
