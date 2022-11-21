@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { ToyFilter } from '../cmps/ToyFilter'
 import { ToyList } from '../cmps/ToyList'
 import { toyService } from '../services/toy-service'
@@ -42,6 +43,7 @@ export class ToyApp extends Component {
 			<div className="toy-app">
 				{/* <div className="main-content flex main-layout"> */}
 				<ToyFilter onChangeFilter={this.onChangeFilter} />
+				<Link to={'/toy/edit'}>Add toy</Link>
 				<ToyList toys={toys} onRemoveToy={this.onRemoveToy} />
 				{/* </div> */}
 			</div>

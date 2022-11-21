@@ -5,6 +5,7 @@ import { AppHeader } from './cmps/AppHeader'
 import { ToyApp } from './views/ToyApp'
 import { HomePage } from './views/HomePage'
 import { ToyDetails } from './views/ToyDetails'
+import { ToyEdit } from './views/ToyEdit'
 
 function App() {
 	return (
@@ -13,6 +14,7 @@ function App() {
 				<AppHeader />
 				<main>
 					<Switch>
+						<Route path={'/toy/edit/:id?'} component={ToyEdit} />
 						<Route path={'/toy/:id'} component={ToyDetails} />
 						<Route path={'/toy'} component={ToyApp} />
 						<Route path={'/'} component={HomePage} />

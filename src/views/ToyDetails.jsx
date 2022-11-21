@@ -6,9 +6,24 @@ export class ToyDetails extends Component {
 		toy: null,
 	}
 
-	async componentDidMount() {
-		const toy = await toyService.getById(this.props.match.params.id)
+	componentDidMount() {
+		this.loadToy()
+	}
+
+	componentDidUpdate(prevProps, PrevState) {
+		if (prevProps.match.params.id !== this.props.match.id) {
+			this.loadToy()
+		}
+	}
+
+	async loadToy() {
+		let toyId = this.props.match.params.id
+		const toy = await toyService.getById(toyId)
 		this.setState({ toy })
+	}
+
+	onBack = () => {
+		this.props.history.push('/')
 	}
 
 	render() {
@@ -21,7 +36,11 @@ export class ToyDetails extends Component {
 					<h1>Price: {toy.price}</h1>
 				</div>
 				<img src={`http://robohash.org/${toy._id}`} alt="toy image" />
+
+				<button onClick={this.onBack}>Back</button>
+				<button>Next</button>
 			</div>
 		)
 	}
 }
+//פונקצינ בסרביס במוצאת את האינדקס לפי האיידי ומחזירה את הצעצוע באינדקס הבא
