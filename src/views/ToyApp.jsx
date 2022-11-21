@@ -22,6 +22,7 @@ export class ToyApp extends Component {
 
 	render() {
 		const { toys } = this.state
+		if (!toys) return <div>Loading...</div>
 		return (
 			<div className="toy-app">
 				<ToyList toys={toys} />

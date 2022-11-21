@@ -3,6 +3,8 @@
 	border-radius: $radius;
 	box-shadow: 0 0 3px 0px #79737380;
 
+	flex-direction: column;
+
 	//background-img
 	background-repeat: no-repeat;
 	background-size: 100%;
@@ -10,5 +12,18 @@
 
 	.info {
 		padding: rem(10px);
+		flex-grow: 1;
+	}
+
+	.actions {
+		height: 25%;
+		justify-content: space-between;
+		align-items: center;
+		background-color: rgb(182 177 177 / 43%);
+
+		.btn {
+			padding: 5px 15px;
+			@include app-btn($clr3);
+		}
 	}
 }
