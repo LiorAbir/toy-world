@@ -4,6 +4,7 @@
 	box-shadow: 0 0 3px 0px #79737380;
 
 	flex-direction: column;
+	overflow-y: hidden;
 
 	//background-img
 	background-repeat: no-repeat;
@@ -20,10 +21,16 @@
 		justify-content: space-between;
 		align-items: center;
 		background-color: rgb(182 177 177 / 43%);
+		transform: translateY(100%);
+		transition: transform 0.3s;
 
 		.btn {
 			padding: 5px 15px;
 			@include app-btn($clr3);
 		}
+	}
+
+	&:hover .actions {
+		transform: translateY(0);
 	}
 }

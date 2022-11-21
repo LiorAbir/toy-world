@@ -1,0 +1,11 @@
+.toy-filter {
+	justify-content: space-between;
+	align-items: center;
+	// flex-direction: column;
+	margin: auto;
+	margin-bottom: 20px;
+
+	input {
+		background-color: $clr4;
+	}
+}

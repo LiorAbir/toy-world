@@ -15,8 +15,65 @@ export const toyService = {
 	getEmptyToy,
 }
 
-async function query() {
-	return storageService.query(TOY_KEY)
+async function query(filterBy) {
+	let toys = await storageService.query(TOY_KEY)
+	if (filterBy) {
+		const { name, price, inStock, labels, page, sort } = filterBy
+
+		//NAME
+		const regexTxt = new RegExp(name, 'i')
+		let filteredToys = toys.filter((toy) => regexTxt.test(toy.name))
+
+		//price
+		if (price) {
+			const regexNum = new RegExp(price, 'i')
+			filteredToys = filteredToys.filter((toy) => regexNum.test(toy.price))
+		}
+
+		//in stock
+		if (inStock) {
+			filteredToys = filteredToys.filter((toy) => toy.inStock)
+		}
+
+		//labels
+		if (labels && labels.length) {
+			filteredToys = filteredToys.filter((toy) =>
+				labels.some((label) => toy.labels.includes(label))
+			)
+		}
+
+		//sort
+		if (sort && sort.length) {
+			const sorted = sort.split(' - ')
+			const dir = sorted[1] === 'Increasing' ? 1 : -1
+			switch (sorted[0]) {
+				case 'Name':
+					filteredToys = filteredToys.sort(
+						(t1, t2) => t1.name.localeCompare(t2.name) * dir
+					)
+					break
+				case 'Price':
+					filteredToys = filteredToys.sort(
+						(t1, t2) => (t1.price - t2.price) * dir
+					)
+					break
+				case 'Created':
+					filteredToys = filteredToys.sort(
+						(t1, t2) => (t1.createdAt - t2.createdAt) * dir
+					)
+					break
+			}
+		}
+
+		toys = filteredToys
+	}
+	// const { name, price, inStock, labels, sort } = filterBy
+
+	// console.log(filteredToys)
+	return Promise.resolve([...toys])
+	// return filteredToys
+
+	// return storageService.query(TOY_KEY)
 
 	// return await httpService.get(prmStr)
 }
