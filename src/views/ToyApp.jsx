@@ -41,11 +41,11 @@ export class ToyApp extends Component {
 		if (!toys) return <div>Loading...</div>
 		return (
 			<div className="toy-app">
-				{/* <div className="main-content flex main-layout"> */}
-				<ToyFilter onChangeFilter={this.onChangeFilter} />
-				<Link to={'/toy/edit'}>Add toy</Link>
-				<ToyList toys={toys} onRemoveToy={this.onRemoveToy} />
-				{/* </div> */}
+				<div className="main-content flex">
+					<ToyFilter onChangeFilter={this.onChangeFilter} />
+					{/* <Link to={'/toy/edit'}>Add toy</Link> */}
+					<ToyList toys={toys} onRemoveToy={this.onRemoveToy} />
+				</div>
 			</div>
 		)
 	}

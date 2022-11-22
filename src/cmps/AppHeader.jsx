@@ -3,9 +3,12 @@ import { NavLink } from 'react-router-dom'
 function _AppHeader() {
 	return (
 		<header className="app-header flex">
-			<div className="content main-layout flex">
+			<div className="content flex">
 				<NavLink exact to="/">
-					<h1 className="logo">Toy World</h1>
+					{/* <div className="logo flex"> */}
+					{/* <img src="../assets/imgs/logo-bear.png" alt="bear" /> */}
+					<h2 className="logo">Toy World</h2>
+					{/* </div> */}
 				</NavLink>
 				<nav className="main-nav">
 					<NavLink to="/toy">Toys</NavLink>

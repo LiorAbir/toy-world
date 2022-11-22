@@ -1,12 +1,21 @@
 .toy-filter {
 	justify-content: space-between;
-	align-items: center;
-	// flex-direction: column;
-	margin: auto;
-	margin-bottom: 20px;
-	// width: 30%;
+	flex-direction: column;
+	width: 20%;
+	margin-right: 30px;
+	background-color: rgb(255 255 255 / 25%);
+
+	border: 2px solid $clr1;
+	border-radius: $radius;
+	padding: 1rem;
 
 	input {
 		background-color: $clr4;
+	}
+
+	label {
+		margin-bottom: 2rem;
+		display: flex;
+		flex-direction: column;
 	}
 }

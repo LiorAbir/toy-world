@@ -34,51 +34,62 @@ export class ToyFilter extends Component {
 		const { name, price, inStock, labels, sort } = this.state
 		return (
 			<form className="toy-filter flex main-layout">
-				<input
-					type="text"
-					name="name"
-					value={name}
-					onChange={this.handleChange}
-					placeholder="Enter toy name..."
-				/>
-				<input
-					type="number"
-					name="price"
-					value={price}
-					onChange={this.handleChange}
-					placeholder="Enter toy price..."
-				/>
+				<label>
+					<h3>Search by toy name:</h3>
+					<input
+						type="text"
+						name="name"
+						value={name}
+						onChange={this.handleChange}
+						placeholder="Enter toy name..."
+					/>
+				</label>
 
-				<select
-					name="labels"
-					value={labels}
-					placeholder="Select labels"
-					onChange={this.handleChange}
-					multiple
-				>
-					<option value="">option</option>
-					<option value="">option</option>
-					<option value="">option</option>
-				</select>
+				<label>
+					<h3>Search by toy price:</h3>
+					<input
+						type="number"
+						name="price"
+						value={price}
+						onChange={this.handleChange}
+						placeholder="Enter toy price..."
+					/>
+				</label>
 
-				<select
-					name="sort"
-					value={sort}
-					placeholder="Sort by..."
-					onChange={this.handleChange}
-				>
-					<option value="">option</option>
-					<option value="">option</option>
-					<option value="">option</option>
-				</select>
+				<label>
+					<h3>Search by toy labels:</h3>
+					<input type="checkbox" />
+					<input type="checkbox" />
+					<input type="checkbox" />
+					<input type="checkbox" />
+					<input type="checkbox" />
+					<input type="checkbox" />
+				</label>
 
-				<input
-					type="checkbox"
-					name="inStock"
-					value={inStock}
-					checked={inStock}
-					onChange={this.handleChange}
-				/>
+				<label>
+					<h3>Sort by:</h3>
+					<select
+						name="sort"
+						value={sort}
+						placeholder="Sort by..."
+						onChange={this.handleChange}
+					>
+						<option value="">option</option>
+						<option value="">option</option>
+						<option value="">option</option>
+					</select>
+				</label>
+
+				<label>
+					<h3>Is in Stock:</h3>
+					<input
+						type="checkbox"
+						name="inStock"
+						value={inStock}
+						checked={inStock}
+						onChange={this.handleChange}
+					/>
+				</label>
 			</form>
 		)
 	}

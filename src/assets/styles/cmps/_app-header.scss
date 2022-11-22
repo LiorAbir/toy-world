@@ -3,12 +3,28 @@
 	height: rem(80px);
 
 	.content {
+		width: 90%;
 		justify-content: space-between;
 		align-items: center;
 		margin: auto;
 
-		a.active {
-			color: $clr3;
+		a {
+			font-size: 20px;
+		}
+
+		// a.active {
+		// 	color: $clr3;
+		// }
+
+		.logo {
+			// font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+			font-weight: 800;
+			justify-content: center;
+			align-items: center;
+
+			span {
+				width: 100px;
+			}
 		}
 	}
 }

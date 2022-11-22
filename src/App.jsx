@@ -20,6 +20,7 @@ function App() {
 						<Route path={'/'} component={HomePage} />
 					</Switch>
 				</main>
+				<footer></footer>
 			</div>
 		</Router>
 	)
