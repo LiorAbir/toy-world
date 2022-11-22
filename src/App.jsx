@@ -20,7 +20,7 @@ function App() {
 						<Route path={'/'} component={HomePage} />
 					</Switch>
 				</main>
-				<footer></footer>
+				<footer className="app-footer">footerr</footer>
 			</div>
 		</Router>
 	)
