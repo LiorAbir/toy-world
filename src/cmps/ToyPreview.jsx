@@ -10,12 +10,14 @@ export function ToyPreview({ toy, onRemoveToy }) {
 				<p>{toy.desc}</p>
 			</Link>
 			<section className="actions flex">
-				<button className="btn edit-btn">edit</button>
+				<Link className="btn edit-btn" to={`/toy/edit/${toy._id}`}>
+					Edit
+				</Link>
 				<button
 					className="btn remove-btn"
 					onClick={() => onRemoveToy(toy._id)}
 				>
-					delete
+					Delete
 				</button>
 			</section>
 		</div>
