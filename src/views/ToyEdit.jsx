@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import AddImg from '../cmps/AddImg'
+import { AddImg } from '../cmps/AddImg'
 import { toyService } from '../services/toy-service'
 
 export class ToyEdit extends Component {
@@ -33,17 +33,19 @@ export class ToyEdit extends Component {
 				value = +target.value || ''
 				break
 			case 'checkbox':
-				value = target.checked
-				break
-			case 'select-multiple':
-				const options = target.options
-				value = []
-				for (var i = 0; i < options.length; i++) {
-					if (options[i].selected) {
-						value.push(options[i].value)
+				if (field === 'inStock') {
+					value = target.checked
+				} else if (field === 'labels') {
+					value = this.state.toy.labels
+					if (target.checked) {
+						value.push(target.value)
+					} else {
+						value = this.state.toy.labels.filter(
+							(label) => label !== target.value
+						)
 					}
 				}
-				console.log(value)
+				break
 			default:
 				value = target.value
 		}
@@ -53,6 +55,17 @@ export class ToyEdit extends Component {
 
 	onAddImg = (url) => {
 		this.setState((prevState) => ({ toy: { ...prevState.toy, img: url } }))
+	}
+
+	isCheckedLabel(label) {
+		console.log(label)
+		const isChecked = false
+		this.state.toy.labels.map((l) => {
+			console.log(l, 'l')
+			console.log(label, 'label')
+			isChecked = l === label ? true : false
+		})
+		return false
 	}
 
 	onSaveToy = async (ev) => {
@@ -110,7 +123,6 @@ export class ToyEdit extends Component {
 							onChange={this.handleChange}
 							placeholder="Enter toy description"
 						/>
-						{/* <div contentEditable>{toy.desc}</div> */}
 					</label>
 					<label>
 						<h3>Labels:</h3>
@@ -122,10 +134,7 @@ export class ToyEdit extends Component {
 									name="labels"
 									value={label}
 									onChange={this.handleChange}
-									// checked={toy.labels.map((l) => {
-									// 	console.log(l)
-									// 	return l === label ? false : true
-									// })}
+									defaultChecked={false}
 								/>
 								<h4>{label}</h4>
 							</div>

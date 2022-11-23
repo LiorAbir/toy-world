@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { ReactComponent as ImgIcon } from '../assets/icon/image.svg'
 import { uploadImg } from '../services/img-upload.service'
 
-export default class AddImg extends Component {
+export class AddImg extends Component {
 	handleFile = (ev) => {
 		const file = ev.target.files[0]
 		this.uploadFile(file)
