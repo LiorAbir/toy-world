@@ -5,13 +5,15 @@ function _AppHeader() {
 		<header className="app-header flex">
 			<div className="content flex">
 				<NavLink exact to="/">
-					{/* <div className="logo flex"> */}
-					{/* <img src="../assets/imgs/logo-bear.png" alt="bear" /> */}
-					<h2 className="logo">Toy World</h2>
-					{/* </div> */}
+					<h2 className="logo" title="home page">
+						Toy World
+					</h2>
 				</NavLink>
 				<nav className="main-nav">
-					<NavLink to="/toy">Toys</NavLink>
+					<NavLink to="/toy" title="toy list">
+						Toys
+					</NavLink>
+					<NavLink to={'/toy/edit'}>Add toy</NavLink>
 				</nav>
 			</div>
 		</header>

@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import AddImg from '../cmps/AddImg'
 import { toyService } from '../services/toy-service'
 
 export class ToyEdit extends Component {
@@ -19,7 +20,7 @@ export class ToyEdit extends Component {
 		const toyId = this.props.match.params.id
 		const toy = toyId
 			? await toyService.getById(toyId)
-			: await toyService.getEmptyToy()
+			: toyService.getEmptyToy()
 		this.setState({ toy })
 	}
 
@@ -36,7 +37,6 @@ export class ToyEdit extends Component {
 				break
 			case 'select-multiple':
 				const options = target.options
-				// console.log(options)
 				value = []
 				for (var i = 0; i < options.length; i++) {
 					if (options[i].selected) {
@@ -51,22 +51,37 @@ export class ToyEdit extends Component {
 		this.setState((prevState) => ({ toy: { ...prevState.toy, [field]: value } }))
 	}
 
+	onAddImg = (url) => {
+		this.setState((prevState) => ({ toy: { ...prevState.toy, img: url } }))
+	}
+
 	onSaveToy = async (ev) => {
 		ev.preventDefault()
-		await toyService.save({ ...this.state.toy })
-		this.props.history.push('/toy')
+		if (!this.state.toy.createdAt) {
+			this.setState((prevState) => ({
+				toy: { ...prevState.toy, createdAt: Date.now() },
+			}))
+		}
+		// await toyService.save({ ...this.state.toy })
+		// this.props.history.push('/toy')
 	}
 
 	render() {
 		const { toy, labels } = this.state
 		if (!toy) return <div>Loading..</div>
+		const toyImg = (
+			<div className="img-container">
+				<img src={toy.img} alt="toy-img" className="toy-img" />
+			</div>
+		)
 		return (
 			<section className="toy-edit">
 				{JSON.stringify(toy)}
-				<h1>{toy._id ? 'Edit' : 'Add'}</h1>
+				<h1>{toy._id ? 'Edit' : 'Add'} toy:</h1>
 				<form onSubmit={this.onSaveToy}>
+					{toy.img ? toyImg : <AddImg onAddImg={this.onAddImg} />}
 					<label>
-						<h1>Name:</h1>
+						<h3>Name:</h3>
 						<input
 							type="text"
 							name="name"
@@ -76,17 +91,18 @@ export class ToyEdit extends Component {
 						/>
 					</label>
 					<label>
-						<h1>Price:</h1>
+						<h3>Price:</h3>
 						<input
 							type="number"
 							name="price"
 							value={toy.price}
 							onChange={this.handleChange}
 							placeholder="Enter toy price"
+							min={0}
 						/>
 					</label>
-					<label htmlFor="">
-						<h1>Description:</h1>
+					<label>
+						<h3>Description:</h3>
 						<input
 							type="text"
 							name="desc"
@@ -96,28 +112,27 @@ export class ToyEdit extends Component {
 						/>
 						{/* <div contentEditable>{toy.desc}</div> */}
 					</label>
-					<label htmlFor="">
-						<h1>Labels:</h1>
-						<select
-							name="labels"
-							value={toy.labels}
-							multiple
-							onChange={this.handleChange}
-							placeholder="Labels"
-						>
-							{labels.map((label, i) => (
-								<option value={label} key={label + i}>
-									{label}
-								</option>
-							))}
-						</select>
+					<label>
+						<h3>Labels:</h3>
+
+						{labels.map((label, i) => (
+							<div className="labels flex" key={label + i}>
+								<input
+									type="checkBox"
+									name="labels"
+									value={label}
+									onChange={this.handleChange}
+									// checked={toy.labels.map((l) => {
+									// 	console.log(l)
+									// 	return l === label ? false : true
+									// })}
+								/>
+								<h4>{label}</h4>
+							</div>
+						))}
 					</label>
-					<label htmlFor="">
-						<h1>Created At:</h1>
-						<input type="date" />
-					</label>
-					<label htmlFor="">
-						<h1>Is in stock:</h1>
+					<label>
+						<h3>Is in stock:</h3>
 						<input
 							type="checkbox"
 							name="inStock"
@@ -127,7 +142,9 @@ export class ToyEdit extends Component {
 						/>
 					</label>
 
-					<button>Save</button>
+					<button className="btn save-btn" title="save">
+						Save
+					</button>
 				</form>
 			</section>
 		)

@@ -43,7 +43,7 @@ export class ToyApp extends Component {
 			<div className="toy-app">
 				<div className="main-content flex">
 					<ToyFilter onChangeFilter={this.onChangeFilter} />
-					{/* <Link to={'/toy/edit'}>Add toy</Link> */}
+
 					<ToyList toys={toys} onRemoveToy={this.onRemoveToy} />
 				</div>
 			</div>

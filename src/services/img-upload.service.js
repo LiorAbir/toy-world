@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { UPLOAD_PRESET, CLOUD_NAME } from '../../ignore/apis'
+// import { UPLOAD_PRESET, CLOUD_NAME } from '../../ignore/apis'
+import { UPLOAD_PRESET, CLOUD_NAME } from '../ToIgnore/apis'
 
 export const uploadImg = async (file) => {
 	const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`

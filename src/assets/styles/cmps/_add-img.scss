@@ -1,0 +1,14 @@
+.add-img {
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+
+	.add-img-svg {
+		height: 140px;
+	}
+
+	input {
+		display: none;
+	}
+}

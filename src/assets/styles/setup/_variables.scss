@@ -6,6 +6,8 @@ $clr4: rgb(100 218 238);
 $clr5: rgb(255 206 0);
 $clr6: rgb(62 141 255);
 
+$background1: rgb(255 255 255 / 25%);
+
 $svg-clr1: invert(44%) sepia(36%) saturate(9%) hue-rotate(317deg) brightness(95%)
 	contrast(86%);
 $svg-clr2: invert(100%) sepia(1%) saturate(3294%) hue-rotate(285deg) brightness(116%)
@@ -15,6 +17,7 @@ $svg-clr3: invert(46%) sepia(1%) saturate(0%) hue-rotate(341deg) brightness(100%
 $svg-clr4: invert(5%) sepia(0%) saturate(4881%) hue-rotate(8deg) brightness(99%)
 	contrast(85%);
 
+$border: 2px solid $clr1;
 $radius: 8px;
 
 // - Dark Blue (intro and email sign up background): h

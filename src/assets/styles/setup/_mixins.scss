@@ -70,3 +70,10 @@
 		left: 2px;
 	}
 }
+
+@mixin content-container {
+	border: $border;
+	border-radius: $radius;
+	padding: 1rem;
+	background-color: $background1;
+}
