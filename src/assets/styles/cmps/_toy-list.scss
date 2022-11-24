@@ -3,9 +3,27 @@
 	border-radius: $radius;
 	padding: 1rem;
 	background-color: rgb(255 255 255 / 25%);
-	// height: 100vw;
 
-	// overflow: auto;
+	overflow-y: scroll;
+	/* width */
+	&::-webkit-scrollbar {
+		width: 13px;
+	}
+
+	/* Track */
+	&::-webkit-scrollbar-track {
+		background: #f1f1f1;
+	}
+
+	/* Handle */
+	&::-webkit-scrollbar-thumb {
+		background: $clr5;
+	}
+
+	/* Handle on hover */
+	&::-webkit-scrollbar-thumb:hover {
+		background: $clr4;
+	}
 
 	flex-grow: 1;
 }
