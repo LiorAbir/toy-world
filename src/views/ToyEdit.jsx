@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { AddImg } from '../cmps/AddImg'
 import { toyService } from '../services/toy-service'
+import { ReactComponent as CheckIcon } from '../assets/icon/check.svg'
 
 export class ToyEdit extends Component {
 	state = {
@@ -57,17 +58,6 @@ export class ToyEdit extends Component {
 		this.setState((prevState) => ({ toy: { ...prevState.toy, img: url } }))
 	}
 
-	isCheckedLabel(label) {
-		console.log(label)
-		const isChecked = false
-		this.state.toy.labels.map((l) => {
-			console.log(l, 'l')
-			console.log(label, 'label')
-			isChecked = l === label ? true : false
-		})
-		return false
-	}
-
 	onSaveToy = async (ev) => {
 		ev.preventDefault()
 		if (!this.state.toy.createdAt) {
@@ -75,13 +65,17 @@ export class ToyEdit extends Component {
 				toy: { ...prevState.toy, createdAt: Date.now() },
 			}))
 		}
-		// await toyService.save({ ...this.state.toy })
-		// this.props.history.push('/toy')
+		await toyService.save({ ...this.state.toy })
+		this.props.history.push('/toy')
 	}
 
 	render() {
 		const { toy, labels } = this.state
 		if (!toy) return <div>Loading..</div>
+		let checkedStyle = { backgroundColor: 'white' }
+		if (toy.inStock) {
+			checkedStyle = { backgroundColor: 'rgb(100 218 238)' }
+		}
 		const toyImg = (
 			<div className="img-container">
 				<img src={toy.img} alt="toy-img" className="toy-img" />
@@ -124,31 +118,39 @@ export class ToyEdit extends Component {
 							placeholder="Enter toy description"
 						/>
 					</label>
-					<label>
+					<label className="labels-label flex">
 						<h3>Labels:</h3>
-
-						{labels.map((label, i) => (
-							<div className="labels flex" key={label + i}>
-								<input
-									type="checkBox"
-									name="labels"
-									value={label}
-									onChange={this.handleChange}
-									defaultChecked={false}
-								/>
-								<h4>{label}</h4>
-							</div>
-						))}
+						<div>
+							{labels.map((label, i) => (
+								<label
+									className="label-btn flex"
+									key={label + i}
+									title={label}
+								>
+									<input
+										type="checkBox"
+										name="labels"
+										value={label}
+										onChange={this.handleChange}
+									/>
+									<h4>{label}</h4>
+								</label>
+							))}
+						</div>
 					</label>
 					<label>
 						<h3>Is in stock:</h3>
-						<input
-							type="checkbox"
-							name="inStock"
-							value={toy.inStock}
-							checked={toy.inStock}
-							onChange={this.handleChange}
-						/>
+						<label className="check-label flex" style={checkedStyle}>
+							{toy.inStock ? <CheckIcon /> : ''}
+
+							<input
+								type="checkbox"
+								name="inStock"
+								value={toy.inStock}
+								checked={toy.inStock}
+								onChange={this.handleChange}
+							/>
+						</label>
 					</label>
 
 					<button className="btn save-btn" title="save">
