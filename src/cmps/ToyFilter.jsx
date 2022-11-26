@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import { ReactComponent as CheckIcon } from '../assets/icon/check.svg'
 
 export class ToyFilter extends Component {
 	state = {
@@ -19,7 +20,18 @@ export class ToyFilter extends Component {
 				value = +target.value || ''
 				break
 			case 'checkbox':
-				value = target.checked
+				if (field === 'inStock') {
+					value = target.checked
+				} else if (field === 'labels') {
+					value = this.state.labels
+					if (target.checked) {
+						value.push(target.value)
+					} else {
+						value = this.state.labels.filter(
+							(label) => label !== target.value
+						)
+					}
+				}
 				break
 			default:
 				value = target.value
@@ -41,6 +53,18 @@ export class ToyFilter extends Component {
 			'Puzzle',
 			'Outdoor',
 		]
+		const sortOpt = [
+			'Name - Increasing',
+			'Price - Increasing',
+			'Created - Increasing',
+			'Name - Decreasing',
+			'Price - Decreasing',
+			'Created - Decreasing',
+		]
+		let checkedStyle = { backgroundColor: 'white' }
+		if (inStock) {
+			checkedStyle = { backgroundColor: 'rgb(100 218 238)' }
+		}
 		return (
 			<form className="toy-filter flex main-layout">
 				<label>
@@ -56,15 +80,15 @@ export class ToyFilter extends Component {
 
 				<label>
 					<h3>Search by price range:</h3>
-					<div className="range flex">
-						<input
-							type="מוצנקר"
-							name="price"
-							value={price}
-							onChange={this.handleChange}
-							placeholder="Enter toy price..."
-						/>
-					</div>
+					{/* <div className="number flex"> */}
+					<input
+						type="number"
+						name="price"
+						value={price}
+						onChange={this.handleChange}
+						placeholder="Enter toy price..."
+					/>
+					{/* </div> */}
 				</label>
 
 				<label>
@@ -94,21 +118,27 @@ export class ToyFilter extends Component {
 						placeholder="Sort by..."
 						onChange={this.handleChange}
 					>
-						<option value="">option</option>
-						<option value="">option</option>
-						<option value="">option</option>
+						<option value="">Sort</option>
+						{sortOpt.map((opt, i) => (
+							<option value={opt} key={opt + i}>
+								{opt}
+							</option>
+						))}
 					</select>
 				</label>
 
 				<label>
 					<h3>Is in Stock:</h3>
-					<input
-						type="checkbox"
-						name="inStock"
-						value={inStock}
-						checked={inStock}
-						onChange={this.handleChange}
-					/>
+					<label className="Check-label flex" style={checkedStyle}>
+						{inStock ? <CheckIcon /> : ''}
+						<input
+							type="checkbox"
+							name="inStock"
+							value={inStock}
+							checked={inStock}
+							onChange={this.handleChange}
+						/>
+					</label>
 				</label>
 			</form>
 		)
