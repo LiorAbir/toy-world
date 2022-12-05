@@ -2,6 +2,7 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 
 //CMPS
 import { AppHeader } from './cmps/AppHeader'
+import { AppFooter } from './cmps/AppFooter'
 import { ToyApp } from './views/ToyApp'
 import { HomePage } from './views/HomePage'
 import { ToyDetails } from './views/ToyDetails'
@@ -20,7 +21,7 @@ function App() {
 						<Route path={'/'} component={HomePage} />
 					</Switch>
 				</main>
-				<footer className="app-footer">footerr</footer>
+				<AppFooter />
 			</div>
 		</Router>
 	)

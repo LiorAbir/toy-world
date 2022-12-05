@@ -3,5 +3,20 @@
 	color: $clr2;
 	height: 15rem;
 	margin-top: 7rem;
-	// bottom: 0;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 1rem;
+
+	.logo {
+		font-weight: 800;
+		margin-bottom: 3rem;
+	}
+
+	svg {
+		filter: invert(100%) sepia(11%) saturate(1080%) hue-rotate(232deg)
+			brightness(119%) contrast(100%);
+		width: 30px;
+		margin-right: 10px;
+		cursor: pointer;
+	}
 }

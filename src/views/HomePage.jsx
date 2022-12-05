@@ -1,6 +1,5 @@
 import { Component } from 'react'
-// import { ReactComponent as toyCar } from '../assets/imgs/toy-car.svg'
-import { ReactComponent as ToyCar } from '../assets/imgs/toy-car.svg'
+// import { ReactComponent as ToyCar } from '../assets/imgs/toy-car.svg'
 
 export class HomePage extends Component {
 	render() {
