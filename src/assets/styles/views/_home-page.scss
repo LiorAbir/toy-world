@@ -1,3 +1,46 @@
 .home-page {
 	height: 80vh;
+	width: 90%;
+	margin: auto;
+
+	.hero {
+		@include content-container();
+		background-image: url('../../imgs/toy-car.svg');
+		background-repeat: no-repeat;
+		background-size: 900px;
+		background-position: right bottom;
+
+		justify-content: space-between;
+		align-items: center;
+		height: 100%;
+		width: 100%;
+		position: relative;
+
+		.hero-content {
+			width: 50%;
+			z-index: 1000;
+			margin-left: 1rem;
+
+			.text {
+				margin-bottom: 10%;
+				font-size: large;
+			}
+
+			h1,
+			h3 {
+				font-weight: 800;
+			}
+		}
+
+		// .hero-img {
+		// 	position: absolute;
+		// 	bottom: -88px;
+		// 	right: -47px;
+		// }
+	}
+
+	.start-btn {
+		@include app-btn($clr6);
+		padding: 1rem;
+	}
 }
