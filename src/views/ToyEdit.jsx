@@ -1,20 +1,24 @@
 import { Component } from 'react'
+import { connect } from 'react-redux'
+import { updateToy } from '../store/actions/toyActions'
+
+//CMPS
 import { AddImg } from '../cmps/AddImg'
 import { toyService } from '../services/toy-service'
 import { ReactComponent as CheckIcon } from '../assets/icon/check.svg'
 
-export class ToyEdit extends Component {
+class _ToyEdit extends Component {
 	state = {
 		toy: null,
-		labels: [
-			'On wheels',
-			'Box game',
-			'Art',
-			'Baby',
-			'Doll',
-			'Puzzle',
-			'Outdoor',
-		],
+		// labels: [
+		// 	'On wheels',
+		// 	'Box game',
+		// 	'Art',
+		// 	'Baby',
+		// 	'Doll',
+		// 	'Puzzle',
+		// 	'Outdoor',
+		// ],
 	}
 
 	async componentDidMount() {
@@ -65,12 +69,14 @@ export class ToyEdit extends Component {
 				toy: { ...prevState.toy, createdAt: Date.now() },
 			}))
 		}
-		await toyService.save({ ...this.state.toy })
+		// await toyService.save({ ...this.state.toy })
+		this.props.updateToy({ ...this.state.toy })
 		this.props.history.push('/toy')
 	}
 
 	render() {
-		const { toy, labels } = this.state
+		const { toy } = this.state
+		const { labels } = this.props
 		if (!toy) return <div>Loading..</div>
 		let checkedStyle = { backgroundColor: 'white' }
 		if (toy.inStock) {
@@ -161,3 +167,16 @@ export class ToyEdit extends Component {
 		)
 	}
 }
+
+const mapStateToProps = (state) => {
+	return {
+		toy: null,
+		labels: state.toyModule.labels,
+	}
+}
+
+const mapDispatchToProps = {
+	updateToy,
+}
+
+export const ToyEdit = connect(mapStateToProps, mapDispatchToProps)(_ToyEdit)

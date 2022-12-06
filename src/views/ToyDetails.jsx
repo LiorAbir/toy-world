@@ -35,7 +35,7 @@ export class ToyDetails extends Component {
 					<h1>Name: {toy.name}</h1>
 					<h1>Price: {toy.price}</h1>
 				</div>
-				<img src={`http://robohash.org/${toy._id}`} alt="toy image" />
+				<img src={toy.img} alt="toy image" />
 
 				<button onClick={this.onBack}>Back</button>
 				<button>Next</button>
