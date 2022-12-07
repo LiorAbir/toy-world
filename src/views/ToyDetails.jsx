@@ -10,11 +10,11 @@ export class ToyDetails extends Component {
 		this.loadToy()
 	}
 
-	componentDidUpdate(prevProps, PrevState) {
-		if (prevProps.match.params.id !== this.props.match.id) {
-			this.loadToy()
-		}
-	}
+	// componentDidUpdate(prevProps, PrevState) {
+	// 	if (prevProps.match.params.id !== this.props.match.id) {
+	// 		this.loadToy()
+	// 	}
+	// }
 
 	async loadToy() {
 		let toyId = this.props.match.params.id
@@ -23,7 +23,7 @@ export class ToyDetails extends Component {
 	}
 
 	onBack = () => {
-		this.props.history.push('/')
+		this.props.history.push('/toy')
 	}
 
 	render() {
@@ -31,14 +31,42 @@ export class ToyDetails extends Component {
 		if (!toy) return <div>Loading...</div>
 		return (
 			<div className="toy-details flex">
-				<div className="info">
-					<h1>Name: {toy.name}</h1>
-					<h1>Price: {toy.price}</h1>
+				<div className="img-container">
+					<img src={toy.img} alt="toy image" />
 				</div>
-				<img src={toy.img} alt="toy image" />
+				<div className="info">
+					<div className="container">
+						<h2>Name:</h2>
+						<p> {toy.name}</p>
+					</div>
+					<div className="container">
+						<h2>Price:</h2>
+						<p> {toy.price}</p>
+					</div>
+					<div className="container">
+						<h2>Description:</h2>
+						<p> {toy.desc}</p>
+					</div>
+					<div className="container">
+						<h2>Is in stock:</h2>
+						<p>{toy.inStock ? '✔️' : '❌'} </p>
+					</div>
+					<div className="container">
+						<h2>Labels:</h2>
+						{toy.labels.map((label, i) => (
+							<p key={label + i}>{label} , </p>
+						))}
+					</div>
+					<div className="container">
+						<h2>Created at:</h2>
+						<p> {toy.createdAt}</p>
+					</div>
+				</div>
 
-				<button onClick={this.onBack}>Back</button>
-				<button>Next</button>
+				<button className="back-btn" onClick={this.onBack}>
+					Back to list
+				</button>
+				{/* <button>Next</button> */}
 			</div>
 		)
 	}

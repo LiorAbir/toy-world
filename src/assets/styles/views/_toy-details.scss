@@ -1,9 +1,11 @@
 .toy-details {
+	@include content-container();
 	width: 90%;
+	min-height: 80vh;
 	margin: auto;
-	background-color: $clr5;
-	padding: 1rem;
-	border-radius: $radius;
+	flex-direction: column;
+	justify-content: space-between;
+	font-weight: 700;
 
 	@include from-mobile-layout() {
 		width: 50%;
@@ -13,7 +15,33 @@
 		width: 40%;
 	}
 
-	img {
-		width: 500px;
+	& > * {
+		margin-bottom: 1rem;
+	}
+
+	.img-container {
+		@include content-container();
+		img {
+			height: 150px;
+		}
+	}
+
+	.info {
+		@include content-container();
+		flex-grow: 1;
+
+		.container {
+			display: flex;
+			justify-content: center;
+			align-items: baseline;
+		}
+	}
+
+	.back-btn {
+		@include app-btn($clr5);
+		padding: 1rem;
+		width: 20%;
+		margin: auto;
+		text-align: center;
 	}
 }

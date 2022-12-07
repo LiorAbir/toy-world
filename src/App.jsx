@@ -15,10 +15,10 @@ function App() {
 				<AppHeader />
 				<main>
 					<Switch>
-						<Route path={'/toy/edit/:id?'} component={ToyEdit} />
-						<Route path={'/toy/:id'} component={ToyDetails} />
-						<Route path={'/toy'} component={ToyApp} />
-						<Route path={'/'} component={HomePage} />
+						<Route path="/toy/edit/:id?" component={ToyEdit} />
+						<Route path="/toy/:id" component={ToyDetails} />
+						<Route path="/toy" component={ToyApp} />
+						<Route path="/" component={HomePage} />
 					</Switch>
 				</main>
 				<AppFooter />
