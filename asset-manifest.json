@@ -1,15 +1,22 @@
 {
   "files": {
-    "main.css": "/toy-world/static/css/main.073c9b0a.css",
-    "main.js": "/toy-world/static/js/main.89f47d1f.js",
+    "main.css": "/toy-world/static/css/main.eb9a3eb4.css",
+    "main.js": "/toy-world/static/js/main.8bcfef44.js",
     "static/js/787.cda612ba.chunk.js": "/toy-world/static/js/787.cda612ba.chunk.js",
+    "static/media/splash-background.png": "/toy-world/static/media/splash-background.3df9b2f4099235c2b9a5.png",
+    "static/media/toy-car.svg": "/toy-world/static/media/toy-car.077e643105c3b687c577.svg",
+    "static/media/instagram.svg": "/toy-world/static/media/instagram.c2056460bbbf6c051f72df6d7c2fa6dc.svg",
+    "static/media/twitter.svg": "/toy-world/static/media/twitter.3dc87dd2a4dd3f022f8170e467852d4b.svg",
+    "static/media/image.svg": "/toy-world/static/media/image.2edd9240734d69c5bb900c54bbe7d84e.svg",
     "index.html": "/toy-world/index.html",
-    "main.073c9b0a.css.map": "/toy-world/static/css/main.073c9b0a.css.map",
-    "main.89f47d1f.js.map": "/toy-world/static/js/main.89f47d1f.js.map",
+    "static/media/facebook.svg": "/toy-world/static/media/facebook.bb281c7fe5085e0a931d100e72878110.svg",
+    "static/media/check.svg": "/toy-world/static/media/check.b28a1148c04cd8d3a351898766c7780a.svg",
+    "main.eb9a3eb4.css.map": "/toy-world/static/css/main.eb9a3eb4.css.map",
+    "main.8bcfef44.js.map": "/toy-world/static/js/main.8bcfef44.js.map",
     "787.cda612ba.chunk.js.map": "/toy-world/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.89f47d1f.js"
+    "static/css/main.eb9a3eb4.css",
+    "static/js/main.8bcfef44.js"
   ]
 }
