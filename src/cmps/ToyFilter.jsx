@@ -147,7 +147,7 @@ export class ToyFilter extends Component {
 						</select>
 					</label>
 
-					<label className="check-container flex">
+					<label className="check-container">
 						<h3>Is in Stock:</h3>
 						<label className="check-label flex" style={checkedStyle}>
 							{inStock ? <CheckIcon /> : ''}
