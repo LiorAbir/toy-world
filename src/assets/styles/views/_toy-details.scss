@@ -1,9 +1,17 @@
 .toy-details {
-	width: 60%;
+	width: 90%;
 	margin: auto;
 	background-color: $clr5;
 	padding: 1rem;
 	border-radius: $radius;
+
+	@include from-mobile-layout() {
+		width: 50%;
+	}
+
+	@include from-wide-layout() {
+		width: 40%;
+	}
 
 	img {
 		width: 500px;

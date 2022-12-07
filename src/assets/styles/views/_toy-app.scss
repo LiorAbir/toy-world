@@ -1,10 +1,16 @@
 .toy-app {
 	.main-content {
 		justify-content: center;
-		// align-items: center;
-
+		position: relative;
 		width: 90%;
 		height: 85vh;
 		margin: auto;
+		flex-direction: column;
+		overflow-x: hidden;
+
+		@include from-mobile-layout() {
+			flex-direction: row;
+			// background-color: aqua;
+		}
 	}
 }

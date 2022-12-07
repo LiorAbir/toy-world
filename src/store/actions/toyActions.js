@@ -5,7 +5,6 @@ export function loadToys() {
 		try {
 			const { filterBy } = getState().toyModule
 			const toys = await toyService.query(filterBy)
-			console.log(toys)
 			dispatch({ type: 'SET_TOYS', toys })
 		} catch (err) {
 			console.log('cannot load toys')

@@ -1,29 +1,5 @@
 /* Media queries Breakpoint mixins */
 
-// @mixin for-mobile-layout {
-//   @media (max-width: $break-narrow) {
-//     @content;
-//   }
-// }
-
-// @mixin for-narrow-layout {
-//   @media (min-width: $break-narrow) {
-//     @content;
-//   }
-// }
-
-// @mixin for-normal-layout {
-//   @media (min-width: $break-normal) {
-//     @content;
-//   }
-// }
-
-// @mixin for-wide-layout {
-//   @media (min-width: $break-wide) {
-//     @content;
-//   }
-// }
-
 @mixin from-mini-layout {
 	@media (min-width: $mini-breakpoint) {
 		@content;
@@ -54,18 +30,25 @@
 	}
 }
 
-@mixin app-btn($clr) {
+@mixin app-btn($clr: $clr3) {
 	background-color: $clr;
 	border: 2px solid $clr1;
 	border-radius: 5px;
 	transition: 0.3s;
 	position: relative;
 	box-shadow: 2px 2px 0 #000;
+	cursor: pointer;
 	top: 0;
 	left: 0;
 
+	&.clicked {
+		top: 2px;
+		left: 2px;
+		background-color: $clr3;
+		box-shadow: none;
+	}
+
 	&:hover {
-		cursor: pointer;
 		box-shadow: none;
 		top: 2px;
 		left: 2px;

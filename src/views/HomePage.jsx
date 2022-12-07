@@ -9,10 +9,10 @@ export class HomePage extends Component {
 					<div className="hero-content">
 						<div className="text">
 							<h1>Toy World</h1>
-							<h3>
+							<p>
 								Lorem, ipsum dolor sit amet consectetur adipisicing
 								elit.
-							</h3>
+							</p>
 						</div>
 						<button className="btn start-btn">Start Shopping</button>
 					</div>
