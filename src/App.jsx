@@ -7,6 +7,7 @@ import { ToyApp } from './views/ToyApp'
 import { HomePage } from './views/HomePage'
 import { ToyDetails } from './views/ToyDetails'
 import { ToyEdit } from './views/ToyEdit'
+import { LoginSignup } from './views/LoginSignup'
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 				<AppHeader />
 				<main>
 					<Switch>
+						<Route path="/login" component={LoginSignup} />
 						<Route path="/toy/edit/:id?" component={ToyEdit} />
 						<Route path="/toy/:id" component={ToyDetails} />
 						<Route path="/toy" component={ToyApp} />

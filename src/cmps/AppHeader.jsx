@@ -14,6 +14,7 @@ function _AppHeader() {
 						Toys
 					</NavLink>
 					<NavLink to={'/toy/edit'}>Add toy</NavLink>
+					<NavLink to={'/login'}>User</NavLink>
 				</nav>
 			</div>
 		</header>

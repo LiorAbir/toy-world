@@ -1,0 +1,42 @@
+.login-container,
+.signup-container {
+	min-height: 80vh;
+	width: 90%;
+	margin: auto;
+	font-weight: 700;
+
+	.title {
+		margin-bottom: 1rem;
+		font-size: 2rem;
+	}
+
+	@include from-mobile-layout() {
+		width: 50%;
+	}
+
+	@include from-wide-layout() {
+		width: 40%;
+	}
+
+	.info-form {
+		@include content-container();
+		flex-direction: column;
+		margin-bottom: 2rem;
+
+		input {
+			background: none;
+			border-bottom: $border;
+			border-radius: 0%;
+			margin-bottom: 2rem;
+			font-weight: 700;
+			font-size: 1rem;
+		}
+	}
+
+	.btn {
+		@include app-btn($clr7);
+		padding: 1rem;
+		width: 20%;
+		text-align: center;
+	}
+}
