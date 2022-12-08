@@ -27,33 +27,6 @@ class _ToyEdit extends Component {
 
 	checkLabels(toy) {
 		const labels = this.props.labels
-		// console.log(toy)
-		// console.log('Check')
-		// const toyLabels = toy.labels
-		// for (let i = 0; i < toyLabels.length; i++) {
-		// 	const toyLabel = toyLabels[i]
-		// 	for (let j = 0; j < labels.length; j++) {
-		// 		const label = labels[j]
-		// 		// label.isChecked = label.name === toyLabel ? true : false
-		// 		if (toyLabel === label.name) {
-		// 			label.isChecked = true
-		// 		} else {
-		// 			label.isChecked = false
-		// 		}
-		// 	}
-		// }
-
-		// toy.labels.map((toyLabel) => {
-		// const checkedLabels = []
-		// if (label.name === toyLabel) checkedLabels.push(label.name)
-		// label.isChecked = label.name === toyLabel ? true : false
-		// })
-		// if (toy.labels.includes(label.name)) {
-		// 	label.isChecked = true
-		// } else {
-		// 	label.isChecked = false
-		// }
-
 		labels.map((label) => {
 			label.isChecked = toy.labels.includes(label.name) ? true : false
 		})
@@ -62,7 +35,6 @@ class _ToyEdit extends Component {
 	handleChange = ({ target }) => {
 		const field = target.name
 		let value = target.value
-		const labels = this.props.labels
 
 		switch (target.type) {
 			case 'number':

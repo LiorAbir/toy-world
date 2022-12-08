@@ -1,4 +1,4 @@
-.login-container,
+.login-signup-container,
 .signup-container {
 	min-height: 80vh;
 	width: 90%;
@@ -36,7 +36,6 @@
 	.btn {
 		@include app-btn($clr7);
 		padding: 1rem;
-		width: 20%;
 		text-align: center;
 	}
 }
