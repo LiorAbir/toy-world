@@ -10,28 +10,59 @@ import { ReactComponent as CheckIcon } from '../assets/icon/check.svg'
 class _ToyEdit extends Component {
 	state = {
 		toy: null,
-		// labels: [
-		// 	'On wheels',
-		// 	'Box game',
-		// 	'Art',
-		// 	'Baby',
-		// 	'Doll',
-		// 	'Puzzle',
-		// 	'Outdoor',
-		// ],
 	}
 
 	async componentDidMount() {
+		this.loadToy()
+	}
+
+	async loadToy() {
 		const toyId = this.props.match.params.id
 		const toy = toyId
 			? await toyService.getById(toyId)
 			: toyService.getEmptyToy()
 		this.setState({ toy })
+		this.checkLabels(toy)
+	}
+
+	checkLabels(toy) {
+		const labels = this.props.labels
+		// console.log(toy)
+		// console.log('Check')
+		// const toyLabels = toy.labels
+		// for (let i = 0; i < toyLabels.length; i++) {
+		// 	const toyLabel = toyLabels[i]
+		// 	for (let j = 0; j < labels.length; j++) {
+		// 		const label = labels[j]
+		// 		// label.isChecked = label.name === toyLabel ? true : false
+		// 		if (toyLabel === label.name) {
+		// 			label.isChecked = true
+		// 		} else {
+		// 			label.isChecked = false
+		// 		}
+		// 	}
+		// }
+
+		// toy.labels.map((toyLabel) => {
+		// const checkedLabels = []
+		// if (label.name === toyLabel) checkedLabels.push(label.name)
+		// label.isChecked = label.name === toyLabel ? true : false
+		// })
+		// if (toy.labels.includes(label.name)) {
+		// 	label.isChecked = true
+		// } else {
+		// 	label.isChecked = false
+		// }
+
+		labels.map((label) => {
+			label.isChecked = toy.labels.includes(label.name) ? true : false
+		})
 	}
 
 	handleChange = ({ target }) => {
 		const field = target.name
 		let value = target.value
+		const labels = this.props.labels
 
 		switch (target.type) {
 			case 'number':
@@ -48,7 +79,9 @@ class _ToyEdit extends Component {
 						value = this.state.toy.labels.filter(
 							(label) => label !== target.value
 						)
+						this.state.toy.labels = value
 					}
+					this.checkLabels(this.state.toy)
 				}
 				break
 			default:
@@ -69,7 +102,6 @@ class _ToyEdit extends Component {
 				toy: { ...prevState.toy, createdAt: Date.now() },
 			}))
 		}
-		// await toyService.save({ ...this.state.toy })
 		this.props.updateToy({ ...this.state.toy })
 		this.props.history.push('/toy')
 	}
@@ -78,10 +110,11 @@ class _ToyEdit extends Component {
 		const { toy } = this.state
 		const { labels } = this.props
 		if (!toy) return <div>Loading..</div>
-		let checkedStyle = { backgroundColor: 'white' }
-		if (toy.inStock) {
-			checkedStyle = { backgroundColor: 'rgb(100 218 238)' }
-		}
+
+		let inStockStyle = toy.inStock
+			? { backgroundColor: 'rgb(100 218 238)' }
+			: { backgroundColor: 'white' }
+
 		const toyImg = (
 			<div className="img-container">
 				<img src={toy.img} alt="toy-img" className="toy-img" />
@@ -89,7 +122,7 @@ class _ToyEdit extends Component {
 		)
 		return (
 			<section className="toy-edit">
-				{JSON.stringify(toy)}
+				{/* {JSON.stringify(toy)} */}
 				<h1>{toy._id ? 'Edit' : 'Add'} toy:</h1>
 				<form onSubmit={this.onSaveToy}>
 					{toy.img ? toyImg : <AddImg onAddImg={this.onAddImg} />}
@@ -124,29 +157,32 @@ class _ToyEdit extends Component {
 							placeholder="Enter toy description"
 						/>
 					</label>
-					<label className="labels-label flex">
+					<div className="labels-container flex">
 						<h3>Labels:</h3>
 						<div>
 							{labels.map((label, i) => (
 								<label
-									className="label-btn flex"
-									key={label + i}
-									title={label}
+									className={`label-btn flex ${
+										label.isChecked ? 'clicked' : ''
+									}`}
+									key={label.name + i}
+									title={label.name}
 								>
 									<input
 										type="checkBox"
 										name="labels"
-										value={label}
+										value={label.name}
 										onChange={this.handleChange}
+										checked={label.isChecked}
 									/>
-									<h4>{label}</h4>
+									<h4>{label.name}</h4>
 								</label>
 							))}
 						</div>
-					</label>
+					</div>
 					<label>
 						<h3>Is in stock:</h3>
-						<label className="check-label flex" style={checkedStyle}>
+						<label className="check-label flex" style={inStockStyle}>
 							{toy.inStock ? <CheckIcon /> : ''}
 
 							<input

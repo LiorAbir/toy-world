@@ -35,6 +35,7 @@
 		}
 	}
 
+	.labels-container,
 	label:not(.label-btn, .check-label) {
 		@include content-container();
 
@@ -45,7 +46,7 @@
 		padding: 0 20px;
 	}
 
-	label.labels-label {
+	.labels-container {
 		padding: 20px;
 		div {
 			flex-grow: 1;
