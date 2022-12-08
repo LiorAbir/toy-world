@@ -5,11 +5,11 @@ import {
 } from 'redux'
 import thunk from 'redux-thunk'
 import { toyReducer } from './reducers/toyReducer'
-import { useReducer } from 'react'
+import { userReducer } from './reducers/userReducer'
 
 const rootReducer = combineReducers({
 	toyModule: toyReducer,
-	userModule: useReducer,
+	userModule: userReducer,
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunk))
