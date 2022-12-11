@@ -14,6 +14,7 @@ export function loadLoggedInUser() {
 export function login(credentials) {
 	return async (dispatch) => {
 		try {
+			console.log(credentials)
 			const user = await userService.login(credentials)
 			dispatch({ type: 'SET_USER', user })
 			console.log('User logged in')

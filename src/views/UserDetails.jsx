@@ -13,8 +13,17 @@ class _UserDetails extends Component {
 		if (!loggedInUser) return <Redirect to={'/login'} />
 		return (
 			<section className="user-details flex">
-				<h1>User</h1>
-				{JSON.stringify(loggedInUser)}
+				<div>
+					<h1>Hi {loggedInUser.username}</h1>
+				</div>
+				<div className="cart-container">
+					<h2>Cart</h2>
+					<h1>Empty</h1>
+				</div>
+				<div className="wishlist-container">
+					<h2>Wishlist</h2>
+					<h1>Empty</h1>
+				</div>
 				<button className="btn logout-btn" onClick={this.props.logout}>
 					Logout
 				</button>

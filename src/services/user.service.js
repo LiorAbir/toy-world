@@ -20,6 +20,8 @@ async function login({ username, password }) {
 	const user = _gUsers.find(
 		(user) => user.username === username && user.password === password
 	)
+	console.log(_gUsers, 'users')
+	console.log(user)
 	return _saveLocalUser(user)
 	// const user = await httpService.post(`${prmStr}/login`, credentials)
 }
@@ -85,7 +87,7 @@ function _getUsers() {
 			fullName: 'Lior Abir',
 			username: 'liorabir',
 			email: 'liorabir@gmail.com',
-			password: 123456,
+			password: '123456',
 			isAdmin: true,
 			cart: [],
 			wishList: [],
