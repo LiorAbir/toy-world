@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import { login, signUp } from '../store/actions/UserAction'
 
-export class LoginSignup extends Component {
+class _LoginSignup extends Component {
 	state = {
 		credentials: {
 			username: '',
@@ -27,14 +30,14 @@ export class LoginSignup extends Component {
 
 	onLogin = async (ev) => {
 		ev.preventDefault()
-		console.log(this.state.credentials)
-		// this.setState((prevState) => ({ toy: { ...prevState.toy, [field]: value } }))
+		this.props.login({ ...this.state.credentials })
+		this.props.history.push('/user')
 	}
 
 	onSignup = async (ev) => {
 		ev.preventDefault()
-		console.log(this.state.signUpInfo)
-		// this.setState((prevState) => ({ toy: { ...prevState.toy, [field]: value } }))
+		this.props.signUp({ ...this.state.signUpInfo })
+		this.props.history.push('/user')
 	}
 
 	setSignUp = () => {
@@ -43,13 +46,14 @@ export class LoginSignup extends Component {
 
 	render() {
 		const { isLogin, credentials, signUpInfo } = this.state
+		const { loggedInUser } = this.props
+		if (loggedInUser) return <Redirect to={'/user'} />
 		return (
 			<section className="login-signup-container">
 				{isLogin ? (
 					<>
 						<h1 className="title">ALREADY HAVE AN ACCOUNT? LOG IN</h1>
 						<form className="info-form flex" onSubmit={this.onLogin}>
-							{JSON.stringify(credentials)}
 							<input
 								type="text"
 								name="username"
@@ -73,7 +77,6 @@ export class LoginSignup extends Component {
 							DON'T HAVE AN ACCOUNT YET? REGISTER NOW
 						</h1>
 						<form className="info-form flex">
-							{JSON.stringify(signUpInfo)}
 							<input
 								type="text"
 								name="fullName"
@@ -125,3 +128,16 @@ export class LoginSignup extends Component {
 		)
 	}
 }
+
+const mapStateToProps = (state) => {
+	return {
+		loggedInUser: state.userModule.loggedInUser,
+	}
+}
+
+const mapDispatchToProps = {
+	login,
+	signUp,
+}
+
+export const LoginSignup = connect(mapStateToProps, mapDispatchToProps)(_LoginSignup)
