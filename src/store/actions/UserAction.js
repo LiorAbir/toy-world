@@ -14,11 +14,8 @@ export function loadLoggedInUser() {
 export function login(credentials) {
 	return async (dispatch) => {
 		try {
-			console.log(credentials)
 			const user = await userService.login(credentials)
 			dispatch({ type: 'SET_USER', user })
-			console.log('User logged in')
-			console.log(user, 'user')
 		} catch (err) {
 			console.log('Cannot login')
 		}
@@ -44,6 +41,18 @@ export function logout() {
 			dispatch({ type: 'SET_USER', user })
 		} catch (err) {
 			console.log('Cannot logout')
+		}
+	}
+}
+
+export function updateUser(newUser) {
+	return async (dispatch) => {
+		try {
+			await userService.updateUser(newUser)
+			const user = newUser
+			dispatch({ type: 'SET_USER', user })
+		} catch (err) {
+			console.log('Cannot update user')
 		}
 	}
 }

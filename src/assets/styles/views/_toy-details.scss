@@ -37,11 +37,21 @@
 		}
 	}
 
-	.back-btn {
-		@include app-btn($clr5);
-		padding: 1rem;
-		width: 20%;
-		margin: auto;
-		text-align: center;
+	.btns-container {
+		.btn {
+			@include app-btn($clr5);
+			padding: 1rem;
+			width: 20%;
+			margin: auto;
+			text-align: center;
+		}
+
+		.wishlist-btn {
+			background-color: $clr7;
+		}
+
+		.cart-btn {
+			background-color: $clr6;
+		}
 	}
 }

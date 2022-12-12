@@ -1,7 +1,9 @@
 import { Component } from 'react'
+import { connect } from 'react-redux'
+import { updateUser } from '../store/actions/UserAction'
 import { toyService } from '../services/toy-service'
 
-export class ToyDetails extends Component {
+class _ToyDetails extends Component {
 	state = {
 		toy: null,
 	}
@@ -10,6 +12,7 @@ export class ToyDetails extends Component {
 		this.loadToy()
 	}
 
+	//פונקציה בסרביס במוצאת את האינדקס לפי האיידי ומחזירה את הצעצוע באינדקס הבא
 	// componentDidUpdate(prevProps, PrevState) {
 	// 	if (prevProps.match.params.id !== this.props.match.id) {
 	// 		this.loadToy()
@@ -20,6 +23,22 @@ export class ToyDetails extends Component {
 		let toyId = this.props.match.params.id
 		const toy = await toyService.getById(toyId)
 		this.setState({ toy })
+	}
+
+	onAddToUser = async (toy, category) => {
+		const user = this.props.loggedInUser
+		if (!user) return this.props.history.push('/login')
+		user[category].push(toy)
+		this.props.updateUser(user)
+	}
+
+	onRemoveFromUser = async (toyId, category) => {
+		const user = this.props.loggedInUser
+		if (!user) return this.props.history.push('/login')
+		user[category] = user[category].filter((item) => {
+			return item._id !== toyId
+		})
+		this.props.updateUser(user)
 	}
 
 	onBack = () => {
@@ -63,12 +82,58 @@ export class ToyDetails extends Component {
 					</div>
 				</div>
 
-				<button className="back-btn" onClick={this.onBack}>
-					Back to list
-				</button>
+				<div className="btns-container flex">
+					<button
+						className="btn back-btn"
+						onClick={this.onBack}
+						title="Back"
+					>
+						Back to list
+					</button>
+					<button
+						className="btn wishlist-btn"
+						onClick={() => this.onAddToUser(toy, 'wishlist')}
+						title="Add to wishlist"
+					>
+						Add to wishlist
+					</button>
+					<button
+						className="btn wishlist-btn"
+						onClick={() => this.onRemoveFromUser(toy._id, 'wishlist')}
+						title="Add to wishlist"
+					>
+						Remove from wishlist
+					</button>
+					<button
+						className="btn cart-btn"
+						onClick={() => this.onAddToUser(toy, 'cart')}
+						title="Add to cart"
+					>
+						Add to cart
+					</button>
+					<button
+						className="btn cart-btn"
+						onClick={() => this.onRemoveFromUser(toy._id, 'cart')}
+						title="Add to cart"
+					>
+						Remove from cart
+					</button>
+				</div>
+
 				{/* <button>Next</button> */}
 			</div>
 		)
 	}
 }
-//פונקציה בסרביס במוצאת את האינדקס לפי האיידי ומחזירה את הצעצוע באינדקס הבא
+
+const mapStateToProps = (state) => {
+	return {
+		loggedInUser: state.userModule.loggedInUser,
+	}
+}
+
+const mapDispatchToProps = {
+	updateUser,
+}
+
+export const ToyDetails = connect(mapStateToProps, mapDispatchToProps)(_ToyDetails)

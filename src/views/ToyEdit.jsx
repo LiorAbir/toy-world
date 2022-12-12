@@ -94,7 +94,6 @@ class _ToyEdit extends Component {
 		)
 		return (
 			<section className="toy-edit">
-				{/* {JSON.stringify(toy)} */}
 				<h1>{toy._id ? 'Edit' : 'Add'} toy:</h1>
 				<form onSubmit={this.onSaveToy}>
 					{toy.img ? toyImg : <AddImg onAddImg={this.onAddImg} />}

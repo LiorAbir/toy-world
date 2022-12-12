@@ -14,14 +14,13 @@ export const userService = {
 	logout,
 	signUp,
 	getLoggedinUser,
+	updateUser,
 }
 
 async function login({ username, password }) {
 	const user = _gUsers.find(
 		(user) => user.username === username && user.password === password
 	)
-	console.log(_gUsers, 'users')
-	console.log(user)
 	return _saveLocalUser(user)
 	// const user = await httpService.post(`${prmStr}/login`, credentials)
 }
@@ -40,7 +39,7 @@ async function signUp({ fullName, username, email, password }) {
 		password,
 		isAdmin: false,
 		cart: [],
-		wishList: [],
+		wishlist: [],
 	}
 
 	_gUsers.push(user)
@@ -52,6 +51,11 @@ async function signUp({ fullName, username, email, password }) {
 function getLoggedinUser() {
 	var user = sessionStorage.getItem(USER_KEY)
 	return JSON.parse(user)
+}
+
+function updateUser(user) {
+	storageService.put(USERS_KEY, user)
+	_saveLocalUser(user)
 }
 
 function _saveLocalUser(user) {
@@ -90,7 +94,7 @@ function _getUsers() {
 			password: '123456',
 			isAdmin: true,
 			cart: [],
-			wishList: [],
+			wishlist: [],
 		},
 	]
 }
