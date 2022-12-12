@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Redirect, NavLink, Route, Switch, Link } from 'react-router-dom'
 import { loadLoggedInUser, logout } from '../store/actions/UserAction'
 
 //cmps
-import { ToyList } from '../cmps/ToyList'
+import { UserCart } from './UserCart'
+import { UserWishlist } from './UserWishlist'
+import { UserProfile } from './UserProfile'
 
 class _UserDetails extends Component {
 	async componentDidMount() {
@@ -17,33 +19,22 @@ class _UserDetails extends Component {
 		return (
 			<section className="user-details flex">
 				<div className="header flex">
-					<h1 className="title">Hi {loggedInUser.username} !</h1>
+					<Link className="title" to="/user">
+						Hi {loggedInUser.username} !
+					</Link>
 					<nav className="user-nav flex">
-						<h1>Cart</h1>
-						<h1>Wishlist</h1>
-						<h1>Profile</h1>
+						<NavLink to="/user/cart">Cart</NavLink>
+						<NavLink to="/user/wishlist">Wishlist</NavLink>
+						<NavLink to="/user/profile">Profile</NavLink>
 					</nav>
 				</div>
-				<div className="cart-container">
-					<h2>Cart:</h2>
-					{loggedInUser.cart.length ? (
-						<ToyList toys={loggedInUser.cart} />
-					) : (
-						<div className="empty">
-							<h1>NO TOYS</h1>
-						</div>
-					)}
-				</div>
-				<div className="wishlist-container">
-					<h2>Wishlist:</h2>
-					{loggedInUser.wishlist.length ? (
-						<ToyList toys={loggedInUser.wishlist} />
-					) : (
-						<div className="empty">
-							<h1>empty</h1>
-						</div>
-					)}
-				</div>
+
+				<Switch>
+					<Route path="/user/wishlist" component={UserWishlist} />
+					<Route path="/user/cart" component={UserCart} />
+					<Route path="/user/profile" component={UserProfile} />
+				</Switch>
+
 				<button className="btn logout-btn" onClick={this.props.logout}>
 					Logout
 				</button>

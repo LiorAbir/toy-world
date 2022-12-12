@@ -56,3 +56,32 @@ export function updateUser(newUser) {
 		}
 	}
 }
+
+export function addToUser(toy, category) {
+	return async (dispatch) => {
+		try {
+			const user = userService.getLoggedinUser()
+			user[category].push(toy)
+			await userService.updateUser(user)
+			dispatch({ type: 'SET_USER', user })
+		} catch (err) {
+			console.log('Cannot update user')
+		}
+	}
+}
+
+export function removeFromUser(toyId, category) {
+	return async (dispatch) => {
+		try {
+			const user = userService.getLoggedinUser()
+			user[category] = user[category].filter((item) => {
+				return item._id !== toyId
+			})
+			await userService.updateUser(user)
+
+			dispatch({ type: 'SET_USER', user })
+		} catch (err) {
+			console.log('Cannot update user')
+		}
+	}
+}

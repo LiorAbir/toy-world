@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import { loadToys, removeToy, setFilterBy } from '../store/actions/toyActions'
-import { updateUser } from '../store/actions/UserAction'
+import { updateUser, removeFromUser, addToUser } from '../store/actions/UserAction'
 //CMPS
 import { ToyFilter } from '../cmps/ToyFilter'
 import { ToyList } from '../cmps/ToyList'
@@ -23,17 +23,13 @@ class _ToyApp extends Component {
 	onAddToUser = async (toy, category) => {
 		const user = this.props.loggedInUser
 		if (!user) return this.props.history.push('/login')
-		user[category].push(toy)
-		this.props.updateUser(user)
+		this.props.addToUser(toy, category)
 	}
 
 	onRemoveFromUser = async (toyId, category) => {
 		const user = this.props.loggedInUser
 		if (!user) return this.props.history.push('/login')
-		user[category] = user[category].filter((item) => {
-			return item._id !== toyId
-		})
-		this.props.updateUser(user)
+		removeFromUser(toyId, category)
 	}
 
 	render() {
@@ -69,6 +65,8 @@ const mapDispatchToProps = {
 	removeToy,
 	setFilterBy,
 	updateUser,
+	addToUser,
+	removeFromUser,
 }
 
 export const ToyApp = connect(mapStateToProps, mapDispatchToProps)(_ToyApp)
