@@ -8,7 +8,7 @@ function _AppHeader({ loggedInUser }) {
 			<div className="content flex">
 				<NavLink exact to="/">
 					<h2 className="logo" title="home page">
-						Toy World
+						ToyWorld
 					</h2>
 				</NavLink>
 				<nav className="main-nav flex">
@@ -35,7 +35,5 @@ const mapStateToProps = (state) => {
 		loggedInUser: state.userModule.loggedInUser,
 	}
 }
-
-const mapDispatchToProps = {}
 
 export const AppHeader = connect(mapStateToProps)(withRouter(_AppHeader))

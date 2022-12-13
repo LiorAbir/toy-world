@@ -7,7 +7,7 @@ import { ReactComponent as Facebook } from '../assets/icon/facebook.svg'
 export function AppFooter() {
 	return (
 		<footer className="app-footer flex">
-			<h1 className="logo">Toy World</h1>
+			<h1 className="logo">ToyWorld</h1>
 			<p>Copyrigth &#169; 2022 hubSpot, Inc</p>
 			<ul className="contact-list clean-list flex">
 				<li title="Instagram">
