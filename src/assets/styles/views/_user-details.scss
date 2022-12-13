@@ -45,7 +45,9 @@
 	.logout-btn {
 		@include app-btn($clr3);
 		padding: 1rem;
-		width: 10%;
+		width: 20%;
+		font-weight: 700;
+		text-align: center;
 	}
 
 	.wishlist-container,

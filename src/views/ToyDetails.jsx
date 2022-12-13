@@ -1,44 +1,72 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import { updateUser } from '../store/actions/UserAction'
+import { addToUser, removeFromUser } from '../store/actions/UserAction'
 import { toyService } from '../services/toy-service'
 
 class _ToyDetails extends Component {
 	state = {
 		toy: null,
+		isInCart: false,
+		isInWishlist: false,
 	}
 
-	componentDidMount() {
-		this.loadToy()
+	async componentDidMount() {
+		let toy = await this.loadToy()
+		this.checkInCart(toy)
+		this.checkInWishlist(toy)
 	}
-
-	//פונקציה בסרביס במוצאת את האינדקס לפי האיידי ומחזירה את הצעצוע באינדקס הבא
-	// componentDidUpdate(prevProps, PrevState) {
-	// 	if (prevProps.match.params.id !== this.props.match.id) {
-	// 		this.loadToy()
-	// 	}
-	// }
 
 	async loadToy() {
 		let toyId = this.props.match.params.id
 		const toy = await toyService.getById(toyId)
 		this.setState({ toy })
+		return toy
+	}
+
+	checkInWishlist(toy) {
+		const user = this.props.loggedInUser
+		if (user) {
+			user.wishlist.map((item) => {
+				if (item._id === toy._id) {
+					this.setCategory('wishlist')
+					return
+				}
+			})
+		}
+	}
+
+	checkInCart(toy) {
+		const user = this.props.loggedInUser
+		if (user) {
+			user.cart.map((item) => {
+				if (item._id === toy._id) {
+					this.setCategory('cart')
+					return
+				}
+			})
+		}
 	}
 
 	onAddToUser = async (toy, category) => {
 		const user = this.props.loggedInUser
 		if (!user) return this.props.history.push('/login')
-		user[category].push(toy)
-		this.props.updateUser(user)
+		this.props.addToUser(toy, category)
+		this.setCategory(category)
 	}
 
 	onRemoveFromUser = async (toyId, category) => {
 		const user = this.props.loggedInUser
 		if (!user) return this.props.history.push('/login')
-		user[category] = user[category].filter((item) => {
-			return item._id !== toyId
-		})
-		this.props.updateUser(user)
+		this.props.removeFromUser(toyId, category)
+		this.setCategory(category)
+	}
+
+	setCategory(category) {
+		if (category === 'wishlist') {
+			this.setState({ isInWishlist: !this.state.isInWishlist })
+		} else {
+			this.setState({ isInCart: !this.state.isInCart })
+		}
 	}
 
 	onBack = () => {
@@ -46,7 +74,7 @@ class _ToyDetails extends Component {
 	}
 
 	render() {
-		const { toy } = this.state
+		const { toy, isInCart, isInWishlist } = this.state
 		if (!toy) return <div>Loading...</div>
 		return (
 			<div className="toy-details flex">
@@ -90,34 +118,43 @@ class _ToyDetails extends Component {
 					>
 						Back to list
 					</button>
-					<button
-						className="btn wishlist-btn"
-						onClick={() => this.onAddToUser(toy, 'wishlist')}
-						title="Add to wishlist"
-					>
-						Add to wishlist
-					</button>
-					<button
-						className="btn wishlist-btn"
-						onClick={() => this.onRemoveFromUser(toy._id, 'wishlist')}
-						title="Add to wishlist"
-					>
-						Remove from wishlist
-					</button>
-					<button
-						className="btn cart-btn"
-						onClick={() => this.onAddToUser(toy, 'cart')}
-						title="Add to cart"
-					>
-						Add to cart
-					</button>
-					<button
-						className="btn cart-btn"
-						onClick={() => this.onRemoveFromUser(toy._id, 'cart')}
-						title="Add to cart"
-					>
-						Remove from cart
-					</button>
+
+					{isInWishlist ? (
+						<button
+							className="btn wishlist-btn"
+							onClick={() =>
+								this.onRemoveFromUser(toy._id, 'wishlist')
+							}
+							title="Add to wishlist"
+						>
+							Remove from wishlist
+						</button>
+					) : (
+						<button
+							className="btn wishlist-btn"
+							onClick={() => this.onAddToUser(toy, 'wishlist')}
+							title="Add to wishlist"
+						>
+							Add to wishlist
+						</button>
+					)}
+					{isInCart ? (
+						<button
+							className="btn cart-btn"
+							onClick={() => this.onRemoveFromUser(toy._id, 'cart')}
+							title="Add to cart"
+						>
+							Remove from cart
+						</button>
+					) : (
+						<button
+							className="btn cart-btn"
+							onClick={() => this.onAddToUser(toy, 'cart')}
+							title="Add to cart"
+						>
+							Add to cart
+						</button>
+					)}
 				</div>
 
 				{/* <button>Next</button> */}
@@ -133,7 +170,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-	updateUser,
+	removeFromUser,
+	addToUser,
 }
 
 export const ToyDetails = connect(mapStateToProps, mapDispatchToProps)(_ToyDetails)

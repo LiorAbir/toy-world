@@ -38,11 +38,11 @@
 	}
 
 	.btns-container {
+		justify-content: space-between;
+		align-items: center;
 		.btn {
 			@include app-btn($clr5);
 			padding: 1rem;
-			width: 20%;
-			margin: auto;
 			text-align: center;
 		}
 

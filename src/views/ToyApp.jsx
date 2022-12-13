@@ -29,7 +29,7 @@ class _ToyApp extends Component {
 	onRemoveFromUser = async (toyId, category) => {
 		const user = this.props.loggedInUser
 		if (!user) return this.props.history.push('/login')
-		removeFromUser(toyId, category)
+		this.props.removeFromUser(toyId, category)
 	}
 
 	render() {
