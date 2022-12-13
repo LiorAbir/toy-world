@@ -1,22 +1,25 @@
 {
   "files": {
-    "main.css": "/toy-world/static/css/main.6a8ca6e2.css",
-    "main.js": "/toy-world/static/js/main.c13d0499.js",
+    "main.css": "/toy-world/static/css/main.b70e61f4.css",
+    "main.js": "/toy-world/static/js/main.d2577254.js",
     "static/js/787.cda612ba.chunk.js": "/toy-world/static/js/787.cda612ba.chunk.js",
     "static/media/splash-background.png": "/toy-world/static/media/splash-background.3df9b2f4099235c2b9a5.png",
-    "static/media/toy-car.svg": "/toy-world/static/media/toy-car.077e643105c3b687c577.svg",
+    "static/media/toy-car.svg": "/toy-world/static/media/toy-car.077e643105c3b687c5778e6e05609f2a.svg",
     "static/media/instagram.svg": "/toy-world/static/media/instagram.c2056460bbbf6c051f72df6d7c2fa6dc.svg",
+    "static/media/emptyHeart.svg": "/toy-world/static/media/emptyHeart.3fb901111a227933a654d4b8dcba6e2a.svg",
     "static/media/twitter.svg": "/toy-world/static/media/twitter.3dc87dd2a4dd3f022f8170e467852d4b.svg",
     "static/media/image.svg": "/toy-world/static/media/image.2edd9240734d69c5bb900c54bbe7d84e.svg",
     "index.html": "/toy-world/index.html",
+    "static/media/user.svg": "/toy-world/static/media/user.13bfdf15637b91540eb41beb709024ce.svg",
+    "static/media/heart.svg": "/toy-world/static/media/heart.d7c94efcc368b60f1b616ebb888de958.svg",
     "static/media/facebook.svg": "/toy-world/static/media/facebook.bb281c7fe5085e0a931d100e72878110.svg",
     "static/media/check.svg": "/toy-world/static/media/check.b28a1148c04cd8d3a351898766c7780a.svg",
-    "main.6a8ca6e2.css.map": "/toy-world/static/css/main.6a8ca6e2.css.map",
-    "main.c13d0499.js.map": "/toy-world/static/js/main.c13d0499.js.map",
+    "main.b70e61f4.css.map": "/toy-world/static/css/main.b70e61f4.css.map",
+    "main.d2577254.js.map": "/toy-world/static/js/main.d2577254.js.map",
     "787.cda612ba.chunk.js.map": "/toy-world/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6a8ca6e2.css",
-    "static/js/main.c13d0499.js"
+    "static/css/main.b70e61f4.css",
+    "static/js/main.d2577254.js"
   ]
 }
