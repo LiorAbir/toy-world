@@ -18,7 +18,7 @@ class _UserWishlist extends Component {
 					/>
 				) : (
 					<div className="empty">
-						<h1>empty</h1>
+						<h1>NO TOYS</h1>
 					</div>
 				)}
 			</div>

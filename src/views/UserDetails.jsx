@@ -25,14 +25,16 @@ class _UserDetails extends Component {
 					<nav className="user-nav flex">
 						<NavLink to="/user/cart">Cart</NavLink>
 						<NavLink to="/user/wishlist">Wishlist</NavLink>
-						<NavLink to="/user/profile">Profile</NavLink>
+						<NavLink exact to="/user">
+							Profile
+						</NavLink>
 					</nav>
 				</div>
 
 				<Switch>
 					<Route path="/user/wishlist" component={UserWishlist} />
 					<Route path="/user/cart" component={UserCart} />
-					<Route path="/user/profile" component={UserProfile} />
+					<Route path="/user" component={UserProfile} />
 				</Switch>
 
 				<button className="btn logout-btn" onClick={this.props.logout}>

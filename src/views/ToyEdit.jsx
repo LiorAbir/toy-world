@@ -6,6 +6,7 @@ import { updateToy } from '../store/actions/toyActions'
 import { AddImg } from '../cmps/AddImg'
 import { toyService } from '../services/toy-service'
 import { ReactComponent as CheckIcon } from '../assets/icon/check.svg'
+import { Redirect } from 'react-router-dom'
 
 class _ToyEdit extends Component {
 	state = {
@@ -80,7 +81,8 @@ class _ToyEdit extends Component {
 
 	render() {
 		const { toy } = this.state
-		const { labels } = this.props
+		const { labels, user } = this.props
+		if (!user || user.isAdmin === false) return <Redirect to={'/toy'} />
 		if (!toy) return <div>Loading..</div>
 
 		let inStockStyle = toy.inStock
@@ -179,6 +181,7 @@ const mapStateToProps = (state) => {
 	return {
 		toy: null,
 		labels: state.toyModule.labels,
+		loggedInUser: state.userModule.loggedInUser,
 	}
 }
 
