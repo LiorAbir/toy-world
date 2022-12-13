@@ -3,13 +3,9 @@
 	border-radius: $radius;
 	box-shadow: 0 0 3px 0px #79737380;
 
+	position: relative;
 	flex-direction: column;
 	overflow-y: hidden;
-	position: relative;
-
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-position: bottom;
 
 	.wishlist-btn {
 		position: absolute;
@@ -33,8 +29,11 @@
 		flex-direction: column;
 
 		img {
-			height: 160px;
+			height: 130px;
 			margin-bottom: 25px;
+			@include from-mobile-layout {
+				height: 150px;
+			}
 		}
 	}
 
@@ -42,13 +41,15 @@
 		height: 25%;
 		justify-content: space-between;
 		align-items: center;
-		// background-color: rgb(182 177 177 / 43%);
-		transform: translateY(100%);
-		transition: transform 0.3s;
+
+		@include from-mobile-layout {
+			transform: translateY(100%);
+			transition: transform 0.3s;
+		}
 
 		.btn {
-			padding: 5px 15px;
 			@include app-btn($clr3);
+			padding: 5px 15px;
 
 			&.add-cart {
 				width: 100%;
@@ -58,7 +59,9 @@
 	}
 
 	&:hover .actions {
-		transform: translateY(-50%);
+		@include from-mobile-layout {
+			transform: translateY(-30%);
+		}
 	}
 
 	&:hover {

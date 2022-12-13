@@ -20,12 +20,22 @@
 
 	position: absolute;
 	bottom: 0;
-	height: 92%;
+	height: 90%;
 	width: 100%;
 	left: 1000px;
+	z-index: 1000;
 
 	&.open {
 		left: 0;
+	}
+
+	.search-filters {
+		display: none;
+
+		@include from-mobile-layout {
+			display: block;
+			flex-direction: column;
+		}
 	}
 
 	@include from-mobile-layout() {

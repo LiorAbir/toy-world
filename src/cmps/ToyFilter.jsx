@@ -1,6 +1,7 @@
 import { logDOM } from '@testing-library/react'
 import { Component } from 'react'
 import { ReactComponent as CheckIcon } from '../assets/icon/check.svg'
+import { SearchFilters } from './SearchFilters'
 
 export class ToyFilter extends Component {
 	state = {
@@ -20,9 +21,6 @@ export class ToyFilter extends Component {
 		let value = target.value
 
 		switch (target.type) {
-			case 'number':
-				value = +target.value || ''
-				break
 			case 'checkbox':
 				if (field === 'inStock') {
 					value = target.checked
@@ -49,12 +47,21 @@ export class ToyFilter extends Component {
 		)
 	}
 
+	onHandleChange = ({ name, price }) => {
+		this.setState(
+			(prevState) => ({ filterBy: { ...prevState.filterBy, name, price } }),
+			() => {
+				this.props.onChangeFilter({ ...this.state.filterBy })
+			}
+		)
+	}
+
 	setOpen = () => {
 		this.setState({ isOpen: this.state.isOpen === false ? true : false })
 	}
 
 	render() {
-		const { name, price, inStock, labels, sort } = this.state.filterBy
+		const { inStock, labels, sort } = this.state.filterBy
 		const { isOpen } = this.state
 		let modalClass = isOpen ? 'open' : ''
 		let checkedStyle = inStock
@@ -87,29 +94,7 @@ export class ToyFilter extends Component {
 					</button>
 				</div>
 				<form className={`filter-form flex main-layout ${modalClass}`}>
-					<label>
-						<h3>Search by toy name:</h3>
-						<input
-							type="text"
-							name="name"
-							value={name}
-							onChange={this.handleChange}
-							placeholder="Enter toy name..."
-						/>
-					</label>
-
-					<label>
-						<h3>Search by price range:</h3>
-						{/* <div className="number flex"> */}
-						<input
-							type="number"
-							name="price"
-							value={price}
-							onChange={this.handleChange}
-							placeholder="Enter toy price..."
-						/>
-						{/* </div> */}
-					</label>
+					<SearchFilters onHandleChange={this.onHandleChange} />
 
 					<label>
 						<h3>Search by toy labels:</h3>
@@ -165,12 +150,3 @@ export class ToyFilter extends Component {
 		)
 	}
 }
-
-// sortOpt: [
-//   'Name - Increasing',
-//   'Price - Increasing',
-//   'Created - Increasing',
-//   'Name - Decreasing',
-//   'Price - Decreasing',
-//   'Created - Decreasing',
-// ],

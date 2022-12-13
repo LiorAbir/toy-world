@@ -5,6 +5,7 @@ import { updateUser, removeFromUser, addToUser } from '../store/actions/UserActi
 //CMPS
 import { ToyFilter } from '../cmps/ToyFilter'
 import { ToyList } from '../cmps/ToyList'
+import { SearchFilters } from '../cmps/SearchFilters'
 
 class _ToyApp extends Component {
 	async componentDidMount() {
@@ -38,15 +39,20 @@ class _ToyApp extends Component {
 
 		return (
 			<div className="toy-app">
-				<div className="main-content flex">
-					<ToyFilter onChangeFilter={this.onChangeFilter} />
-					<ToyList
-						toys={toys}
-						user={loggedInUser}
-						onRemoveToy={this.onRemoveToy}
-						onAddToUser={this.onAddToUser}
-						onRemoveFromUser={this.onRemoveFromUser}
-					/>
+				<div className="content-container flex">
+					<div className="container">
+						<SearchFilters />
+					</div>
+					<div className="main-content flex">
+						<ToyFilter onChangeFilter={this.onChangeFilter} />
+						<ToyList
+							toys={toys}
+							user={loggedInUser}
+							onRemoveToy={this.onRemoveToy}
+							onAddToUser={this.onAddToUser}
+							onRemoveFromUser={this.onRemoveFromUser}
+						/>
+					</div>
 				</div>
 			</div>
 		)
