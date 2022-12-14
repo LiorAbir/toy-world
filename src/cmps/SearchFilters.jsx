@@ -20,7 +20,7 @@ export class SearchFilters extends Component {
 		return (
 			<div className="search-filters">
 				<label>
-					{/* <h3>Search by toy name:</h3> */}
+					<h3>Search by toy name:</h3>
 					<input
 						type="text"
 						name="name"
@@ -31,7 +31,7 @@ export class SearchFilters extends Component {
 				</label>
 
 				<label>
-					{/* <h3>Search by price:</h3> */}
+					<h3>Search by price:</h3>
 					<input
 						type="number"
 						name="price"

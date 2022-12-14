@@ -1,4 +1,3 @@
-import { logDOM } from '@testing-library/react'
 import { Component } from 'react'
 import { ReactComponent as CheckIcon } from '../assets/icon/check.svg'
 import { SearchFilters } from './SearchFilters'

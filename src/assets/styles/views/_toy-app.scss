@@ -1,27 +1,30 @@
 .toy-app {
+	height: 85vh;
 	.content-container {
 		flex-direction: column;
-		justify-content: center;
-		align-items: center;
+		justify-content: space-between;
 
 		width: 90%;
-		height: 85vh;
+		height: 100%;
 		margin: auto;
 
-		.container {
-			width: 100%;
+		.search-container {
+			@include from-mobile-layout {
+				display: none;
+			}
+
 			.search-filters {
 				display: flex;
-				justify-content: space-between;
-				align-items: center;
 				flex-direction: column;
-
-				@include from-mobile-layout {
-					display: none;
-				}
+				justify-content: space-between;
 
 				label {
-					width: 100%;
+					h3 {
+						display: none;
+						@include from-mobile-layout {
+							display: none;
+						}
+					}
 
 					input {
 						@include content-container;
@@ -38,6 +41,7 @@
 			overflow-y: hidden;
 			position: relative;
 			flex-direction: column;
+			flex-grow: 1;
 
 			@include from-mobile-layout() {
 				flex-direction: row;

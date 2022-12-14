@@ -8,13 +8,36 @@ import { ToyList } from '../cmps/ToyList'
 import { SearchFilters } from '../cmps/SearchFilters'
 
 class _ToyApp extends Component {
+	state = {
+		filterBy: {
+			name: '',
+			price: '',
+			inStock: false,
+			labels: [],
+			page: 0,
+			sort: '',
+		},
+	}
+
 	async componentDidMount() {
 		this.props.loadToys()
 	}
 
 	onChangeFilter = (filterBy) => {
-		this.props.setFilterBy(filterBy)
-		this.props.loadToys()
+		this.setState({ filterBy }, () => {
+			this.props.setFilterBy(filterBy)
+			this.props.loadToys()
+		})
+	}
+
+	onHandleChange = ({ name, price }) => {
+		this.setState(
+			(prevState) => ({ filterBy: { ...prevState.filterBy, name, price } }),
+			() => {
+				this.props.setFilterBy(this.state.filterBy)
+				this.props.loadToys()
+			}
+		)
 	}
 
 	onRemoveToy = async (id) => {
@@ -40,8 +63,8 @@ class _ToyApp extends Component {
 		return (
 			<div className="toy-app">
 				<div className="content-container flex">
-					<div className="container">
-						<SearchFilters />
+					<div className="search-container">
+						<SearchFilters onHandleChange={this.onHandleChange} />
 					</div>
 					<div className="main-content flex">
 						<ToyFilter onChangeFilter={this.onChangeFilter} />
