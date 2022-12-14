@@ -1,5 +1,4 @@
 import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
-import { connect } from 'react-redux'
 
 //CMPS
 import { AppHeader } from './cmps/AppHeader'

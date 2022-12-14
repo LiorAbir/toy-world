@@ -4,6 +4,10 @@ import { ToyList } from '../cmps/ToyList'
 import { addToUser, removeFromUser } from '../store/actions/UserAction'
 
 class _UserWishlist extends Component {
+	componentDidMount() {
+		if (this.props.loggedInUser.isAdmin) return this.props.history.push('/user')
+	}
+
 	render() {
 		const { loggedInUser, addToUser, removeFromUser } = this.props
 		return (

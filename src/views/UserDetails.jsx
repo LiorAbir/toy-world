@@ -23,8 +23,14 @@ class _UserDetails extends Component {
 						Hi {loggedInUser.username} !
 					</Link>
 					<nav className="user-nav flex">
-						<NavLink to="/user/cart">Cart</NavLink>
-						<NavLink to="/user/wishlist">Wishlist</NavLink>
+						{loggedInUser.isAdmin === false ? (
+							<>
+								<NavLink to="/user/cart">Cart</NavLink>
+								<NavLink to="/user/wishlist">Wishlist</NavLink>
+							</>
+						) : (
+							''
+						)}
 						<NavLink exact to="/user">
 							Profile
 						</NavLink>

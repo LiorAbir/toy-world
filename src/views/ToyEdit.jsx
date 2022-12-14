@@ -14,6 +14,8 @@ class _ToyEdit extends Component {
 	}
 
 	async componentDidMount() {
+		const user = this.props.loggedInUser
+		if (!user || user.isAdmin === false) return this.props.history.push('/toy')
 		this.loadToy()
 	}
 
@@ -75,14 +77,13 @@ class _ToyEdit extends Component {
 				toy: { ...prevState.toy, createdAt: Date.now() },
 			}))
 		}
-		this.props.updateToy({ ...this.state.toy })
+		await this.props.updateToy({ ...this.state.toy })
 		this.props.history.push('/toy')
 	}
 
 	render() {
 		const { toy } = this.state
-		const { labels, user } = this.props
-		if (!user || user.isAdmin === false) return <Redirect to={'/toy'} />
+		const { labels } = this.props
 		if (!toy) return <div>Loading..</div>
 
 		let inStockStyle = toy.inStock

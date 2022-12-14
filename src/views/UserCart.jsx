@@ -4,6 +4,10 @@ import { ToyList } from '../cmps/ToyList'
 import { addToUser, removeFromUser } from '../store/actions/UserAction'
 
 class _UserCart extends Component {
+	componentDidMount() {
+		if (this.props.loggedInUser.isAdmin) return this.props.history.push('/user')
+	}
+
 	render() {
 		const { loggedInUser, addToUser, removeFromUser } = this.props
 		const sumPrice = loggedInUser.cart.reduce((acc, item) => acc + item.price, 0)
