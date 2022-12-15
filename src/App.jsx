@@ -9,6 +9,7 @@ import { ToyDetails } from './views/ToyDetails'
 import { ToyEdit } from './views/ToyEdit'
 import { LoginSignup } from './views/LoginSignup'
 import { UserDetails } from './views/UserDetails'
+import { UserMsg } from './cmps/UserMsg'
 
 function App() {
 	return (
@@ -16,6 +17,7 @@ function App() {
 			<div className="main-app">
 				<AppHeader />
 				<main>
+					<UserMsg />
 					<Switch>
 						<Route path="/login" component={LoginSignup} />
 						<Route path="/user" component={UserDetails} />

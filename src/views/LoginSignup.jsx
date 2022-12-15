@@ -55,6 +55,7 @@ class _LoginSignup extends Component {
 						<h1 className="title">ALREADY HAVE AN ACCOUNT? LOG IN</h1>
 						<form className="info-form flex" onSubmit={this.onLogin}>
 							<input
+								required
 								type="text"
 								name="username"
 								value={credentials.username}
@@ -62,6 +63,7 @@ class _LoginSignup extends Component {
 								placeholder="Enter Username"
 							/>
 							<input
+								required
 								type="password"
 								name="password"
 								value={credentials.password}
@@ -78,6 +80,7 @@ class _LoginSignup extends Component {
 						</h1>
 						<form className="info-form flex">
 							<input
+								required
 								type="text"
 								name="fullName"
 								value={signUpInfo.fullName}
@@ -85,6 +88,7 @@ class _LoginSignup extends Component {
 								placeholder="Full name"
 							/>
 							<input
+								required
 								type="text"
 								name="username"
 								value={signUpInfo.username}
@@ -92,6 +96,7 @@ class _LoginSignup extends Component {
 								placeholder="Username"
 							/>
 							<input
+								required
 								type="email"
 								name="email"
 								value={signUpInfo.email}
@@ -99,6 +104,7 @@ class _LoginSignup extends Component {
 								placeholder="Email"
 							/>
 							<input
+								required
 								type="password"
 								name="password"
 								value={signUpInfo.password}

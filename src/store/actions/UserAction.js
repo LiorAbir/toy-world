@@ -1,4 +1,5 @@
 import { userService } from '../../services/user.service'
+import { showErrorMsg, showSuccessMsg } from '../../services/eventBus-service'
 
 export function loadLoggedInUser() {
 	return async (dispatch, getState) => {
@@ -16,7 +17,9 @@ export function login(credentials) {
 		try {
 			const user = await userService.login(credentials)
 			dispatch({ type: 'SET_USER', user })
+			showSuccessMsg(`hello ${user.fullName}`)
 		} catch (err) {
+			showErrorMsg('Cannot login. please try again')
 			console.log('Cannot login')
 		}
 	}
@@ -27,7 +30,9 @@ export function signUp(signupInfo) {
 		try {
 			const user = await userService.signUp(signupInfo)
 			dispatch({ type: 'SET_USER', user })
+			showSuccessMsg(`hello ${user.fullName}`)
 		} catch (err) {
+			showErrorMsg('Cannot signup. please try again')
 			console.log('Cannot signup')
 		}
 	}
@@ -39,7 +44,9 @@ export function logout() {
 			await userService.logout()
 			const user = null
 			dispatch({ type: 'SET_USER', user })
+			showSuccessMsg(`bye bye`)
 		} catch (err) {
+			showErrorMsg(`Cannot logout. please try again`)
 			console.log('Cannot logout')
 		}
 	}
@@ -64,7 +71,9 @@ export function addToUser(toy, category) {
 			user[category].push(toy)
 			await userService.updateUser(user)
 			dispatch({ type: 'SET_USER', user })
+			showSuccessMsg(`Item added successfully to ${category}`)
 		} catch (err) {
+			showErrorMsg(`Cannot add item to ${category}. please try again`)
 			console.log('Cannot update user')
 		}
 	}
@@ -78,9 +87,10 @@ export function removeFromUser(toyId, category) {
 				return item._id !== toyId
 			})
 			await userService.updateUser(user)
-
 			dispatch({ type: 'SET_USER', user })
+			showSuccessMsg(`Item removed successfully from ${category}`)
 		} catch (err) {
+			showErrorMsg(`Cannot removed Item from ${category}`)
 			console.log('Cannot update user')
 		}
 	}

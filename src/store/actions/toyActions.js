@@ -1,4 +1,5 @@
 import { toyService } from '../../services/toy-service'
+import { showErrorMsg, showSuccessMsg } from '../../services/eventBus-service'
 
 export function loadToys() {
 	return async (dispatch, getState) => {
@@ -17,7 +18,9 @@ export function removeToy(toyId) {
 		try {
 			await toyService.remove(toyId)
 			dispatch({ type: 'REMOVE_TOY', toyId })
+			showSuccessMsg('Deleted successfully')
 		} catch (err) {
+			showErrorMsg('cannot remove toy. please try again')
 			console.log('cannot remove toy')
 		}
 	}
@@ -28,7 +31,9 @@ export function updateToy(toy) {
 		try {
 			await toyService.save(toy)
 			dispatch({ type: 'UPDATE_TOY', toy })
+			showSuccessMsg('Toy updated successfully')
 		} catch (err) {
+			showErrorMsg('cannot remove toy. please try again')
 			console.log('cannot update toy')
 		}
 	}

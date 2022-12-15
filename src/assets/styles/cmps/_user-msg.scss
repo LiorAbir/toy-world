@@ -1,0 +1,16 @@
+.user-msg {
+	@include content-container;
+	position: absolute;
+	top: 16px;
+	right: 16px;
+
+	background-color: $clr7;
+
+	&.success {
+		background-color: rgb(177 224 123);
+	}
+
+	&.error {
+		background-color: rgb(255 110 100);
+	}
+}
