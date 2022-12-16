@@ -3,9 +3,20 @@
 	border-radius: $radius;
 	padding: 1rem;
 	background-color: rgb(255 255 255 / 25%);
-
 	overflow-y: scroll;
-	/* width */
+
+	.no-toys {
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+
+		svg {
+			width: 500px;
+			height: 500px;
+		}
+	}
+
 	&::-webkit-scrollbar {
 		width: 13px;
 	}
