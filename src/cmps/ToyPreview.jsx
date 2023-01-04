@@ -62,16 +62,24 @@ export class ToyPreview extends Component {
 		return (
 			<div className="toy-preview flex">
 				<div className="btn wishlist-btn">
-					{isInWishlist ? (
-						<Heart
-							title="Remove from wishlist"
-							onClick={() => this.onRemove(toy._id, 'wishlist')}
-						/>
+					{user && user.isAdmin ? (
+						''
 					) : (
-						<EmptyHeart
-							title="Add to wishlist"
-							onClick={() => this.onAdd(toy, 'wishlist')}
-						/>
+						<>
+							{isInWishlist ? (
+								<Heart
+									title="Remove from wishlist"
+									onClick={() =>
+										this.onRemove(toy._id, 'wishlist')
+									}
+								/>
+							) : (
+								<EmptyHeart
+									title="Add to wishlist"
+									onClick={() => this.onAdd(toy, 'wishlist')}
+								/>
+							)}
+						</>
 					)}
 				</div>
 				<Link className="info flex" to={`/toy/${toy._id}`}>

@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import { addToUser, removeFromUser } from '../store/actions/UserAction'
+import { getToyById } from '../store/actions/toyActions'
 import { toyService } from '../services/toy-service'
 
 class _ToyDetails extends Component {
@@ -18,9 +19,15 @@ class _ToyDetails extends Component {
 
 	async loadToy() {
 		let toyId = this.props.match.params.id
-		const toy = await toyService.getById(toyId)
+		const toy = await this.props.getToyById(toyId)
 		this.setState({ toy })
 		return toy
+	}
+
+	async getNextPrevToy(num) {
+		const currToyId = this.state.toy._id
+		let toy = await this.props.getToyById(currToyId, num)
+		this.setState({ toy })
 	}
 
 	checkInWishlist(toy) {
@@ -75,6 +82,7 @@ class _ToyDetails extends Component {
 
 	render() {
 		const { toy, isInCart, isInWishlist } = this.state
+		const { loggedInUser } = this.props
 		if (!toy) return <div>Loading...</div>
 		return (
 			<div className="toy-details flex">
@@ -112,6 +120,12 @@ class _ToyDetails extends Component {
 
 				<div className="btns-container flex">
 					<button
+						className="btn prev-btn"
+						onClick={() => this.getNextPrevToy(-1)}
+					>
+						Prev
+					</button>
+					<button
 						className="btn back-btn"
 						onClick={this.onBack}
 						title="Back"
@@ -119,45 +133,57 @@ class _ToyDetails extends Component {
 						Back to list
 					</button>
 
-					{isInWishlist ? (
-						<button
-							className="btn wishlist-btn"
-							onClick={() =>
-								this.onRemoveFromUser(toy._id, 'wishlist')
-							}
-							title="Add to wishlist"
-						>
-							Remove from wishlist
-						</button>
+					{loggedInUser && loggedInUser.isAdmin ? (
+						''
 					) : (
-						<button
-							className="btn wishlist-btn"
-							onClick={() => this.onAddToUser(toy, 'wishlist')}
-							title="Add to wishlist"
-						>
-							Add to wishlist
-						</button>
+						<>
+							{isInWishlist ? (
+								<button
+									className="btn wishlist-btn"
+									onClick={() =>
+										this.onRemoveFromUser(toy._id, 'wishlist')
+									}
+									title="Add to wishlist"
+								>
+									Remove from wishlist
+								</button>
+							) : (
+								<button
+									className="btn wishlist-btn"
+									onClick={() => this.onAddToUser(toy, 'wishlist')}
+									title="Add to wishlist"
+								>
+									Add to wishlist
+								</button>
+							)}
+							{isInCart ? (
+								<button
+									className="btn cart-btn"
+									onClick={() =>
+										this.onRemoveFromUser(toy._id, 'cart')
+									}
+									title="Add to cart"
+								>
+									Remove from cart
+								</button>
+							) : (
+								<button
+									className="btn cart-btn"
+									onClick={() => this.onAddToUser(toy, 'cart')}
+									title="Add to cart"
+								>
+									Add to cart
+								</button>
+							)}
+						</>
 					)}
-					{isInCart ? (
-						<button
-							className="btn cart-btn"
-							onClick={() => this.onRemoveFromUser(toy._id, 'cart')}
-							title="Add to cart"
-						>
-							Remove from cart
-						</button>
-					) : (
-						<button
-							className="btn cart-btn"
-							onClick={() => this.onAddToUser(toy, 'cart')}
-							title="Add to cart"
-						>
-							Add to cart
-						</button>
-					)}
+					<button
+						className="btn next-btn"
+						onClick={() => this.getNextPrevToy(1)}
+					>
+						Next
+					</button>
 				</div>
-
-				{/* <button>Next</button> */}
 			</div>
 		)
 	}
@@ -172,6 +198,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
 	removeFromUser,
 	addToUser,
+	getToyById,
 }
 
 export const ToyDetails = connect(mapStateToProps, mapDispatchToProps)(_ToyDetails)

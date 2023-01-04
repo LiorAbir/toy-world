@@ -22,7 +22,7 @@ class _ToyEdit extends Component {
 	async loadToy() {
 		const toyId = this.props.match.params.id
 		const toy = toyId
-			? await toyService.getById(toyId)
+			? await toyService.getById(toyId, 0)
 			: toyService.getEmptyToy()
 		this.setState({ toy })
 		this.checkLabels(toy)

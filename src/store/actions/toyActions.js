@@ -44,3 +44,15 @@ export function setFilterBy(filterBy) {
 		dispatch({ type: 'SET_FILTER', filterBy })
 	}
 }
+
+export function getToyById(id, num) {
+	return async (dispatch) => {
+		try {
+			const toy = await toyService.getById(id, num)
+			return toy
+		} catch (err) {
+			showErrorMsg('cannot find this toy. please try again')
+			console.log('cannot get toy by ')
+		}
+	}
+}

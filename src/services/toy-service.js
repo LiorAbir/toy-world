@@ -68,14 +68,29 @@ async function query(filterBy) {
 		toys = filteredToys
 	}
 
+	// _getCurrToys(toys)
 	return Promise.resolve([...toys])
 	// return storageService.query(TOY_KEY)
 
 	// return await httpService.get(prmStr)
 }
 
-async function getById(toyId) {
-	return storageService.get(TOY_KEY, toyId)
+async function getById(toyId, num) {
+	const dir = !num ? 0 : num
+	const toys = JSON.parse(localStorage.getItem(TOY_KEY))
+	let toy = storageService.get(TOY_KEY, toyId)
+
+	let currToyIdx = toys.findIndex((toy) => toy._id === toyId)
+
+	toy = toys[currToyIdx + dir]
+	if (currToyIdx + dir >= toys.length) toy = toys[0]
+	if (currToyIdx + dir < 0) toy = toys[toys.length - 1]
+
+	// console.log(toy)
+	// console.log(currToyIdx + dir)
+	// console.log(toys.length)
+
+	return toy
 
 	// const toy = await httpService.get(`${prmStr}/${toyId}`)
 	// return toy
@@ -118,6 +133,16 @@ function _createToys() {
 	}
 	return toys
 }
+
+// function _getCurrToys(toys) {
+// 	const currToys = []
+
+// 	if (toys) {
+// 		currToys = JSON.parse toys
+// 		console.log(toys)
+// 	}
+// 	// return currToys
+// }
 
 function _getToys() {
 	return [
