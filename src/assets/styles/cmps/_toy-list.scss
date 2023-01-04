@@ -1,21 +1,14 @@
-.toy-list {
+.toy-list,
+.no-toys {
 	border: 2px solid $clr1;
 	border-radius: $radius;
 	padding: 1rem;
 	background-color: rgb(255 255 255 / 25%);
+	flex-grow: 1;
+}
+
+.toy-list {
 	overflow-y: scroll;
-
-	.no-toys {
-		width: 100%;
-		justify-content: center;
-		align-items: center;
-		flex-direction: column;
-
-		svg {
-			width: 500px;
-			height: 500px;
-		}
-	}
 
 	&::-webkit-scrollbar {
 		width: 13px;
@@ -35,6 +28,15 @@
 	&::-webkit-scrollbar-thumb:hover {
 		background: $clr4;
 	}
+}
 
-	flex-grow: 1;
+.no-toys {
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	svg {
+		width: 90%;
+		height: 40%;
+	}
 }
