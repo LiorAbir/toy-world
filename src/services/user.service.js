@@ -88,10 +88,20 @@ function _getUsers() {
 	return [
 		{
 			id: 'user1',
-			fullName: 'Lior Abir',
-			username: 'liorabir',
-			email: 'liorabir@gmail.com',
+			fullName: 'Admin',
+			username: 'admin',
+			email: 'admin@gmail.com',
 			password: '123456',
+			isAdmin: true,
+			cart: [],
+			wishlist: [],
+		},
+		{
+			id: 'user2',
+			fullName: 'User',
+			username: 'user',
+			email: 'user@gmail.com',
+			password: '789',
 			isAdmin: true,
 			cart: [],
 			wishlist: [],
